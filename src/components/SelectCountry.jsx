@@ -3,7 +3,7 @@ import ReactFlagsSelect from "react-flags-select";
 
 
 function SelectCountry(props) {
-    const [selected, setSelected] = useState("");
+    const [selected, setSelected] = useState("US");
 
     const handleSelect = (code) => {
         props.onSelect(code);
