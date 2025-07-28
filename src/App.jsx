@@ -135,6 +135,7 @@ const App = () => {
 
   const handleSelect = (country, params) => {
     console.log(country);
+    externalFilterChanged(country);
   }
 
   return (
