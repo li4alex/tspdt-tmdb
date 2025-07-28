@@ -93,17 +93,17 @@ const App = () => {
     }
   };
 
-  // useEffect(() => {
-  //   fetch("./script/tmdb_final_10_us.json")
-  //   .then(result => result.json())
-  //   .then(rowData => setRowData(rowData));
-  // }, []);
-
-  const onGridReady = useEffect(() => {
+  useEffect(() => {
     fetch("./script/tmdb_final_10_us.json")
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
   }, []);
+
+  // const onGridReady = useEffect(() => {
+  //   fetch("./script/tmdb_final_10_us.json")
+  //   .then(result => result.json())
+  //   .then(rowData => setRowData(rowData));
+  // }, []);
 
   // const externalFilterChanged = useCallback((newValue) => {
   //   country = newValue;
@@ -138,6 +138,7 @@ const App = () => {
 
   function updateProviderCols(country) {
     console.log("updateProviderCols country: " + country);
+    console.log("Providers.results." + country + ".link");
     return [
       { field: "Pos", headerName: "2025", maxWidth: 70 },
       { field: "2024" },
@@ -153,39 +154,39 @@ const App = () => {
       { field: "Colour", filter: true},
       { field: "Media Type", filter: true},
       { field: "Release Date", filter: true},
-      { field: "Providers.results.US.link", headerName: "TMDB Link"},
-      { headerName: "Free",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][country]["free"];
-          return retrieveProviders(providerData);
-        }
-      },
-      { headerName: "Flat Rate (Subscription)",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
-          return retrieveProviders(providerData);
-        }
-      },
-      { headerName: "Buy",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][country]["buy"];
-          return retrieveProviders(providerData);
-        }
-      },
-      { headerName: "Rent",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][country]["rent"];
-          return retrieveProviders(providerData);
-        }
-      }
+      { field: "Providers.results." + country + ".link", headerName: "TMDB Link"}
+      // { headerName: "Free",
+      //   // filter: providerFilter,
+      //   filter: true,
+      //   valueGetter: function (params) {
+      //     const providerData = params["data"]["Providers"]["results"][country]["free"];
+      //     return retrieveProviders(providerData);
+      //   }
+      // },
+      // { headerName: "Flat Rate (Subscription)",
+      //   // filter: providerFilter,
+      //   filter: true,
+      //   valueGetter: function (params) {
+      //     const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
+      //     return retrieveProviders(providerData);
+      //   }
+      // },
+      // { headerName: "Buy",
+      //   // filter: providerFilter,
+      //   filter: true,
+      //   valueGetter: function (params) {
+      //     const providerData = params["data"]["Providers"]["results"][country]["buy"];
+      //     return retrieveProviders(providerData);
+      //   }
+      // },
+      // { headerName: "Rent",
+      //   // filter: providerFilter,
+      //   filter: true,
+      //   valueGetter: function (params) {
+      //     const providerData = params["data"]["Providers"]["results"][country]["rent"];
+      //     return retrieveProviders(providerData);
+      //   }
+      // }
     ];
   };
 
@@ -209,7 +210,7 @@ const App = () => {
         pagination={true}
         // isExternalFilterPresent={isExternalFilterPresent}
         // doesExternalFilterPass={true}
-        onGridReady={onGridReady}
+        // onGridReady={onGridReady}
       />
     </div>
   );
