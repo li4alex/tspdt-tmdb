@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./components/SelectCountry";
@@ -27,7 +27,7 @@ const directorFilterParams = {
 };
 
 const App = () => {
-  // const gridRef = useRef(null);
+  const gridRef = useRef();
   // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState([]);
@@ -130,61 +130,63 @@ const App = () => {
   //   [country],
   // );
 
-  const updateProviders = useCallback(() => {
-    gridRef.current.api.setGridOption("colDefs", updateProviderCols());
-  });
+  // Update colDef provisional code
+  // const updateProviders = useCallback(() => {
+  //   gridRef.current.api.setGridOption("colDefs", updateProviderCols());
+  // });
 
-  const updateProviderCols = () => {
-    return [
-      { field: "Pos", headerName: "2025", maxWidth: 70 },
-      { field: "2024" },
-      { field: "2023" },
-      { field: "Title" },
-      { field: "Director",
-        filter: true,
-        filterParams: directorFilterParams},
-      { field: "Year", filter: true},
-      { field: "Country", filter: true},
-      { field: "Length", filter: true},
-      { field: "Genre", filter: true},
-      { field: "Colour", filter: true},
-      { field: "Media Type", filter: true},
-      { field: "Release Date", filter: true},
-      { field: "Providers.results.US.link", headerName: "TMDB Link"},
-      { headerName: "Free",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][country]["free"];
-          return retrieveProviders(providerData);
-        }
-      },
-      { headerName: "Flat Rate (Subscription)",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
-          return retrieveProviders(providerData);
-        }
-      },
-      { headerName: "Buy",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = ["data"]["Providers"]["results"][country]["buy"];
-          return retrieveProviders(providerData);
-        }
-      },
-      { headerName: "Rent",
-        // filter: providerFilter,
-        filter: true,
-        valueGetter: function (params) {
-          const providerData = ["data"]["Providers"]["results"][country]["rent"];
-          return retrieveProviders(providerData);
-        }
-      }
-    ];
-  };
+  // const updateProviderCols = () => {
+  //   console.log("updateProviderCols country" + country)
+  //   return [
+  //     { field: "Pos", headerName: "2025", maxWidth: 70 },
+  //     { field: "2024" },
+  //     { field: "2023" },
+  //     { field: "Title" },
+  //     { field: "Director",
+  //       filter: true,
+  //       filterParams: directorFilterParams},
+  //     { field: "Year", filter: true},
+  //     { field: "Country", filter: true},
+  //     { field: "Length", filter: true},
+  //     { field: "Genre", filter: true},
+  //     { field: "Colour", filter: true},
+  //     { field: "Media Type", filter: true},
+  //     { field: "Release Date", filter: true},
+  //     { field: "Providers.results.US.link", headerName: "TMDB Link"},
+  //     { headerName: "Free",
+  //       // filter: providerFilter,
+  //       filter: true,
+  //       valueGetter: function (params) {
+  //         const providerData = params["data"]["Providers"]["results"][country]["free"];
+  //         return retrieveProviders(providerData);
+  //       }
+  //     },
+  //     { headerName: "Flat Rate (Subscription)",
+  //       // filter: providerFilter,
+  //       filter: true,
+  //       valueGetter: function (params) {
+  //         const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
+  //         return retrieveProviders(providerData);
+  //       }
+  //     },
+  //     { headerName: "Buy",
+  //       // filter: providerFilter,
+  //       filter: true,
+  //       valueGetter: function (params) {
+  //         const providerData = ["data"]["Providers"]["results"][country]["buy"];
+  //         return retrieveProviders(providerData);
+  //       }
+  //     },
+  //     { headerName: "Rent",
+  //       // filter: providerFilter,
+  //       filter: true,
+  //       valueGetter: function (params) {
+  //         const providerData = ["data"]["Providers"]["results"][country]["rent"];
+  //         return retrieveProviders(providerData);
+  //       }
+  //     }
+  //   ];
+  // };
 
   const defaultColDef = {
     flex: 1,
@@ -192,14 +194,14 @@ const App = () => {
 
   const handleSelect = (country, params) => {
     console.log(country);
-    externalFilterChanged(country);
+    updateProviders();
   }
 
   return (
     <div style={{ width: "1400px", height: "500px" }}>
       <SelectCountry onSelect={handleSelect} />
       <AgGridReact
-        // ref={gridRef}
+        ref={gridRef}
         rowData={rowData}
         columnDefs={colDefs}
         defaultColDef={defaultColDef}
