@@ -6,7 +6,7 @@ import SelectCountry from "./components/SelectCountry";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-let selectedCountry = "US";
+let selectedCountry = "";
 
 const directorFilterParams = {
   textFormatter: (r) => {
@@ -47,7 +47,7 @@ const App = () => {
     { field: "Colour", filter: true},
     { field: "Media Type", filter: true},
     { field: "Release Date", filter: true},
-    { field: "Providers.results." + selectedCountry + ".link", headerName: "TMDB Link"},
+    { field: "Providers.results.US.link", headerName: "TMDB Link"},
     { headerName: "Free",
       // filter: providerFilter,
       filter: true,
@@ -94,7 +94,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetch("./script/tmdb_final_10_us.json")
+    fetch("./script/tmdb_final_10.json")
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
   }, []);
@@ -137,8 +137,10 @@ const App = () => {
   }, []);
 
   const updateProviderCols = () => {
-    // console.log("updateProviderCols country: " + country);
+    console.log("updateProviderCols selectedCountry: " + selectedCountry);
     // console.log("Providers.results." + country + ".link");
+    // console.log("country: " + country);
+    // console.log("Providers.results." + selectedCountry + ".link");
     return [
       { field: "Pos", headerName: "2025", maxWidth: 70 },
       { field: "2024", maxWidth: 70 },
@@ -159,10 +161,10 @@ const App = () => {
       //   // filter: providerFilter,
       //   filter: true,
       //   valueGetter: function (params) {
-      //     const providerData = params["data"]["Providers"]["results"][country]["free"];
+      //     const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
       //     return retrieveProviders(providerData);
       //   }
-      // },
+      // }
       // { headerName: "Flat Rate (Subscription)",
       //   // filter: providerFilter,
       //   filter: true,
