@@ -1,12 +1,12 @@
 'use client';
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./components/SelectCountry";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-let country = "US";
+let selectedCountry = "US";
 
 const directorFilterParams = {
   textFormatter: (r) => {
@@ -27,7 +27,7 @@ const directorFilterParams = {
 };
 
 const App = () => {
-  const gridRef = useRef();
+  const gridRef = useRef(null);
   // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState([]);
@@ -47,7 +47,7 @@ const App = () => {
     { field: "Colour", filter: true},
     { field: "Media Type", filter: true},
     { field: "Release Date", filter: true},
-    { field: "Providers.results." + country + ".link", headerName: "TMDB Link"},
+    { field: "Providers.results." + selectedCountry + ".link", headerName: "TMDB Link"},
     { headerName: "Free",
       // filter: providerFilter,
       filter: true,
@@ -131,14 +131,14 @@ const App = () => {
   // );
 
   // Update colDef provisional code
-  function updateProviders(country) {
-    console.log("updateProviders country: " + country);
-    gridRef.current.api.setGridOption("columnDefs", updateProviderCols(country));
-  };
+  const updateProviders = useCallback(() => {
+    // console.log("updateProviders country: " + country);
+    gridRef.current.api.setGridOption("columnDefs", updateProviderCols());
+  }, []);
 
-  function updateProviderCols(country) {
-    console.log("updateProviderCols country: " + country);
-    console.log("Providers.results." + country + ".link");
+  const updateProviderCols = () => {
+    // console.log("updateProviderCols country: " + country);
+    // console.log("Providers.results." + country + ".link");
     return [
       { field: "Pos", headerName: "2025", maxWidth: 70 },
       { field: "2024", maxWidth: 70 },
@@ -154,7 +154,7 @@ const App = () => {
       { field: "Colour", filter: true},
       { field: "Media Type", filter: true},
       { field: "Release Date", filter: true},
-      { field: "Providers.results." + country + ".link", headerName: "TMDB Link"}
+      { field: "Providers.results." + selectedCountry + ".link", headerName: "TMDB Link"}
       // { headerName: "Free",
       //   // filter: providerFilter,
       //   filter: true,
@@ -196,7 +196,8 @@ const App = () => {
 
   const handleSelect = (country, params) => {
     console.log("handleSelect country: " + country);
-    updateProviders(country);
+    selectedCountry = country;
+    updateProviders();
   }
 
   return (
