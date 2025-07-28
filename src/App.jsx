@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./components/SelectCountry";
@@ -194,7 +194,8 @@ const App = () => {
 
   const handleSelect = (country, params) => {
     console.log(country);
-    updateProviders();
+    console.log(params);
+    updateProviders;
   }
 
   return (
