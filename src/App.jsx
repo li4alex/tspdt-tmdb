@@ -52,7 +52,8 @@ const App = () => {
       // filter: providerFilter,
       filter: true,
       valueGetter: function (params) {
-        const providerData = params.data.Providers.results.US.free;
+        const country = "US";
+        const providerData = params["data"]["Providers"]["results"][country]["free"];
         return retrieveProviders(providerData);
       }
     },
@@ -128,6 +129,62 @@ const App = () => {
   //   },
   //   [country],
   // );
+
+  const updateProviders = useCallback(() => {
+    gridRef.current.api.setGridOption("colDefs", updateProviderCols());
+  });
+
+  const updateProviderCols = () => {
+    return [
+      { field: "Pos", headerName: "2025", maxWidth: 70 },
+      { field: "2024" },
+      { field: "2023" },
+      { field: "Title" },
+      { field: "Director",
+        filter: true,
+        filterParams: directorFilterParams},
+      { field: "Year", filter: true},
+      { field: "Country", filter: true},
+      { field: "Length", filter: true},
+      { field: "Genre", filter: true},
+      { field: "Colour", filter: true},
+      { field: "Media Type", filter: true},
+      { field: "Release Date", filter: true},
+      { field: "Providers.results.US.link", headerName: "TMDB Link"},
+      { headerName: "Free",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = params["data"]["Providers"]["results"][country]["free"];
+          return retrieveProviders(providerData);
+        }
+      },
+      { headerName: "Flat Rate (Subscription)",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
+          return retrieveProviders(providerData);
+        }
+      },
+      { headerName: "Buy",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = ["data"]["Providers"]["results"][country]["buy"];
+          return retrieveProviders(providerData);
+        }
+      },
+      { headerName: "Rent",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = ["data"]["Providers"]["results"][country]["rent"];
+          return retrieveProviders(providerData);
+        }
+      }
+    ];
+  };
 
   const defaultColDef = {
     flex: 1,
