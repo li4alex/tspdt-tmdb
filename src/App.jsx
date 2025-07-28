@@ -26,7 +26,7 @@ const directorFilterParams = {
   },
 };
 
-export default function App() {
+const App = () => {
   // const gridRef = useRef(null);
   // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
@@ -92,19 +92,48 @@ export default function App() {
     }
   };
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   fetch("./script/tmdb_final_10_us.json")
+  //   .then(result => result.json())
+  //   .then(rowData => setRowData(rowData));
+  // }, []);
+
+  const onGridReady = useEffect(() => {
     fetch("./script/tmdb_final_10_us.json")
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
-    }, []);
+  }, []);
+
+  // const externalFilterChanged = useCallback((newValue) => {
+  //   country = newValue;
+  //   gridRef.current.api.onFilterChanged();
+  // }, []);
+
+  // const isExternalFilterPresent = useCallback(() => {
+  //   // if ageType is not everyone, then we are filtering
+  //   return country !== "all";
+  // }, []);
+
+  // const doesExternalFilterPass = useCallback(
+  //   (node) => {
+  //     if (node.data) {
+  //       switch (country) {
+  //         case "US":
+  //           return node.data.US
+  //         default:
+  //           return true;
+  //       }
+  //     }
+  //     return true;
+  //   },
+  //   [country],
+  // );
 
   const defaultColDef = {
     flex: 1,
   };
 
-  // const [selected, setSelected] = useState("");
-
-  const handleSelect = (country) => {
+  const handleSelect = (country, params) => {
     console.log(country);
   }
 
@@ -119,8 +148,10 @@ export default function App() {
         pagination={true}
         // isExternalFilterPresent={isExternalFilterPresent}
         // doesExternalFilterPass={true}
-        // onGridReady={onGridReady}
+        onGridReady={onGridReady}
       />
     </div>
   );
 }
+
+export default App;
