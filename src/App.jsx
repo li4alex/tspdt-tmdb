@@ -34,8 +34,8 @@ const App = () => {
     // Column Definitions: Defines & controls grid columns.
   const [colDefs, setColDefs] = useState([
     { field: "Pos", headerName: "2025", maxWidth: 70 },
-    { field: "2024" },
-    { field: "2023" },
+    { field: "2024", maxWidth: 70 },
+    { field: "2023", maxWidth: 70 },
     { field: "Title" },
     { field: "Director",
       filter: true,
@@ -141,8 +141,8 @@ const App = () => {
     console.log("Providers.results." + country + ".link");
     return [
       { field: "Pos", headerName: "2025", maxWidth: 70 },
-      { field: "2024" },
-      { field: "2023" },
+      { field: "2024", maxWidth: 70 },
+      { field: "2023", maxWidth: 70 },
       { field: "Title" },
       { field: "Director",
         filter: true,
