@@ -125,7 +125,9 @@ const App = () => {
       { field: "Pos", headerName: "2025", maxWidth: 70 },
       { field: "2024", maxWidth: 70 },
       { field: "2023", maxWidth: 70 },
-      { field: "Title" },
+      { field: "Title", cellRenderer: (params) => {
+        return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
+      } },
       { field: "Director",
         filter: true,
         filterParams: directorFilterParams},
