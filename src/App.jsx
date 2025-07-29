@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from "react"
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./components/SelectCountry";
+import { Link } from "react-router";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -36,7 +37,11 @@ const App = () => {
     { field: "Pos", headerName: "2025", maxWidth: 65 },
     { field: "2024", maxWidth: 65 },
     { field: "2023", maxWidth: 65 },
-    { field: "Title" },
+    { field: "Title",
+      cellRenderer: (params) => {
+        return <a href= {params.data.Providers.results.US.link} target="_blank" rel="noopener"> {params.value} </a>
+      }
+    },
     { field: "Director",
       filter: true,
       filterParams: directorFilterParams},
@@ -78,6 +83,10 @@ const App = () => {
       }
     }
   ]);
+
+  const LinkCellRenderer = (params) => (
+    <Link to={`https://google.com`}>params.value</Link>
+  );
 
   function retrieveProviders(providerData) {
     if (providerData) {
@@ -188,6 +197,9 @@ const App = () => {
         defaultColDef={defaultColDef}
         pagination={true}
         // onGridReady={onGridReady}
+        frameworkComponents={{
+          LinkCellRenderer
+        }}
       />
       </div>
     </div>
