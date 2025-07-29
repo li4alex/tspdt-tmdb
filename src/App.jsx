@@ -170,9 +170,16 @@ const App = () => {
   }
 
   return (
-    <div style={{ width: "1400px", height: "500px" }}>
+    <div>
+      <body>
+        <p>
+          Provider data is gathered from The Movie Database, which does not provide direct streaming links.
+          The movie titles are links to The Movie Database's streaming provider page for the movie, which does have the relevant streaming links.
+        </p>
+      </body>
       <SelectCountry onSelect={handleSelect} />
-      <AgGridReact
+      <div style={{ width: "1400px", height: "500px" }}>
+        <AgGridReact
         ref={gridRef}
         rowData={rowData}
         columnDefs={colDefs}
@@ -180,6 +187,7 @@ const App = () => {
         pagination={true}
         // onGridReady={onGridReady}
       />
+      </div>
     </div>
   );
 }
