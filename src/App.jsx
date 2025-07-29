@@ -33,9 +33,9 @@ const App = () => {
   const [rowData, setRowData] = useState([]);
     // Column Definitions: Defines & controls grid columns.
   const [colDefs, setColDefs] = useState([
-    { field: "Pos", headerName: "2025", maxWidth: 70 },
-    { field: "2024", maxWidth: 70 },
-    { field: "2023", maxWidth: 70 },
+    { field: "Pos", headerName: "2025", maxWidth: 65 },
+    { field: "2024", maxWidth: 65 },
+    { field: "2023", maxWidth: 65 },
     { field: "Title" },
     { field: "Director",
       filter: true,
@@ -49,7 +49,6 @@ const App = () => {
     { field: "Release Date", filter: true},
     { field: "Providers.results.US.link", headerName: "TMDB Link"},
     { headerName: "Free",
-      // filter: providerFilter,
       filter: true,
       valueGetter: function (params) {
         const country = "US";
@@ -58,7 +57,6 @@ const App = () => {
       }
     },
     { headerName: "Flat Rate (Subscription)",
-      // filter: providerFilter,
       filter: true,
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.flatrate;
@@ -66,7 +64,6 @@ const App = () => {
       }
     },
     { headerName: "Buy",
-      // filter: providerFilter,
       filter: true,
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.buy;
@@ -74,7 +71,6 @@ const App = () => {
       }
     },
     { headerName: "Rent",
-      // filter: providerFilter,
       filter: true,
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.rent;
@@ -156,39 +152,39 @@ const App = () => {
       { field: "Colour", filter: true},
       { field: "Media Type", filter: true},
       { field: "Release Date", filter: true},
-      { field: "Providers.results." + selectedCountry + ".link", headerName: "TMDB Link"}
-      // { headerName: "Free",
-      //   // filter: providerFilter,
-      //   filter: true,
-      //   valueGetter: function (params) {
-      //     const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
-      //     return retrieveProviders(providerData);
-      //   }
-      // }
-      // { headerName: "Flat Rate (Subscription)",
-      //   // filter: providerFilter,
-      //   filter: true,
-      //   valueGetter: function (params) {
-      //     const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
-      //     return retrieveProviders(providerData);
-      //   }
-      // },
-      // { headerName: "Buy",
-      //   // filter: providerFilter,
-      //   filter: true,
-      //   valueGetter: function (params) {
-      //     const providerData = params["data"]["Providers"]["results"][country]["buy"];
-      //     return retrieveProviders(providerData);
-      //   }
-      // },
-      // { headerName: "Rent",
-      //   // filter: providerFilter,
-      //   filter: true,
-      //   valueGetter: function (params) {
-      //     const providerData = params["data"]["Providers"]["results"][country]["rent"];
-      //     return retrieveProviders(providerData);
-      //   }
-      // }
+      { field: "Providers.results." + selectedCountry + ".link", headerName: "TMDB Link"},
+      { headerName: "Free",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
+          return retrieveProviders(providerData);
+        }
+      },
+      { headerName: "Flat Rate (Subscription)",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
+          return retrieveProviders(providerData);
+        }
+      },
+      { headerName: "Buy",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
+          return retrieveProviders(providerData);
+        }
+      },
+      { headerName: "Rent",
+        // filter: providerFilter,
+        filter: true,
+        valueGetter: function (params) {
+          const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
+          return retrieveProviders(providerData);
+        }
+      }
     ];
   };
 
