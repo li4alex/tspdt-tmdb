@@ -101,32 +101,7 @@ const App = () => {
   //   .then(rowData => setRowData(rowData));
   // }, []);
 
-  // const externalFilterChanged = useCallback((newValue) => {
-  //   country = newValue;
-  //   gridRef.current.api.onFilterChanged();
-  // }, []);
 
-  // const isExternalFilterPresent = useCallback(() => {
-  //   // if ageType is not everyone, then we are filtering
-  //   return country !== "all";
-  // }, []);
-
-  // const doesExternalFilterPass = useCallback(
-  //   (node) => {
-  //     if (node.data) {
-  //       switch (country) {
-  //         case "US":
-  //           return node.data.US
-  //         default:
-  //           return true;
-  //       }
-  //     }
-  //     return true;
-  //   },
-  //   [country],
-  // );
-
-  // Update colDef provisional code
   const updateProviders = useCallback(() => {
     // console.log("updateProviders country: " + country);
     gridRef.current.api.setGridOption("columnDefs", updateProviderCols());
@@ -154,7 +129,6 @@ const App = () => {
       { field: "Release Date", filter: true},
       { field: "Providers.results." + selectedCountry + ".link", headerName: "TMDB Link"},
       { headerName: "Free",
-        // filter: providerFilter,
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
@@ -162,7 +136,6 @@ const App = () => {
         }
       },
       { headerName: "Flat Rate (Subscription)",
-        // filter: providerFilter,
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
@@ -170,7 +143,6 @@ const App = () => {
         }
       },
       { headerName: "Buy",
-        // filter: providerFilter,
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
@@ -178,7 +150,6 @@ const App = () => {
         }
       },
       { headerName: "Rent",
-        // filter: providerFilter,
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
@@ -207,8 +178,6 @@ const App = () => {
         columnDefs={colDefs}
         defaultColDef={defaultColDef}
         pagination={true}
-        // isExternalFilterPresent={isExternalFilterPresent}
-        // doesExternalFilterPass={true}
         // onGridReady={onGridReady}
       />
     </div>
