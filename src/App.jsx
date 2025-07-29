@@ -171,12 +171,14 @@ const App = () => {
 
   return (
     <div>
-      <body>
+      <div>
         <p>
-          Provider data is gathered from The Movie Database, which does not provide direct streaming links.
-          The movie titles are links to The Movie Database's streaming provider page for the movie, which does have the relevant streaming links.
+          Provider data is sourced from The Movie Database, which does not provide direct streaming links.
         </p>
-      </body>
+        <p>
+          Movie titles are links to The Movie Database's streaming provider pages for the movies, which do have the relevant streaming links.
+        </p>
+      </div>
       <SelectCountry onSelect={handleSelect} />
       <div style={{ width: "1400px", height: "500px" }}>
         <AgGridReact
