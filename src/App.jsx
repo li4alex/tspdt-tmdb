@@ -52,7 +52,6 @@ const App = () => {
     { field: "Colour", filter: true},
     { field: "Media Type", filter: true},
     { field: "Release Date", filter: true},
-    { field: "Providers.results.US.link", headerName: "TMDB Link"},
     { headerName: "Free",
       filter: true,
       valueGetter: function (params) {
@@ -138,7 +137,6 @@ const App = () => {
       { field: "Colour", filter: true},
       { field: "Media Type", filter: true},
       { field: "Release Date", filter: true},
-      { field: "Providers.results." + selectedCountry + ".link", headerName: "TMDB Link"},
       { headerName: "Free",
         filter: true,
         valueGetter: function (params) {
