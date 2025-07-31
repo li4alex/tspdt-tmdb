@@ -187,10 +187,6 @@ const App = () => {
     updateProviders();
   }
 
-  // function onBtExclude2025() {
-  //   gridRef.current.api.setColumnsVisible(["Pos"], false);
-  // }
-
   const columnIds = [
     "2025",
     "2024",
@@ -211,8 +207,6 @@ const App = () => {
   ];
 
   const [checked, setChecked] = useState(new Array(columnIds.length).fill(true));
-  const [checked2024, setChecked2024] = React.useState(true);
-  const [checked2023, setChecked2023] = React.useState(true);
 
   const handleChange = (position) => {
     const updatedChecked = checked.map((item, index) => {
@@ -231,33 +225,6 @@ const App = () => {
     setChecked(updatedChecked);
   };
 
-  const handleChangePos = () => {
-    setChecked2025(!checked2025);
-    if (checked2025) {
-      gridRef.current.api.setColumnsVisible(["Pos"], false);
-    } else {
-      gridRef.current.api.setColumnsVisible(["Pos"], true);
-    }
-  };
-
-  const handleChange2024 = () => {
-    setChecked2024(!checked2024);
-    if (checked2024) {
-      gridRef.current.api.setColumnsVisible(["2024"], false);
-    } else {
-      gridRef.current.api.setColumnsVisible(["2024"], true);
-    }
-  };
-  
-  const handleChange2023 = () => {
-    setChecked2023(!checked2023);
-    if (checked2023) {
-      gridRef.current.api.setColumnsVisible(["2023"], false);
-    } else {
-      gridRef.current.api.setColumnsVisible(["2023"], true);
-    }
-  };
-
   return (
     <div>
       <div>
@@ -271,31 +238,18 @@ const App = () => {
       <div>
         <SelectCountry onSelect={handleSelect} />
       </div>
-      {/* <div>
-        <button onClick={onBtExclude2025}>2025</button>
-      </div> */}
-      <div>
-        {/* <Checkbox
-          label="2025"
-          value={checked2025}
-          onChange={handleChangePos}
-        />
-        <Checkbox
-          label="2024"
-          value={checked2024}
-          onChange={handleChange2024}
-        /> */}
+      <div className="checkboxes">
           {columnIds.map((columnId, index) => {
             return (
-              <div>
+              <label>
                 <input
                   type="checkbox"
                   id={`checkbox-${index}`}
                   checked={checked[index]}
                   onChange={() => handleChange(index)}
                 />
-                <label htmlFor={`checkbox-${index}`}>{columnId}</label>
-              </div>
+                {columnId}
+              </label>
             );
             }
           )}
