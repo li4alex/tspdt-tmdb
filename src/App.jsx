@@ -35,7 +35,7 @@ const App = () => {
   const [rowData, setRowData] = useState([]);
     // Column Definitions: Defines & controls grid columns.
   const [colDefs, setColDefs] = useState([
-    { field: "Pos", headerName: "2025", maxWidth: 65 },
+    { field: "Pos", headerName: "2025", maxWidth: 65, colId: "2025" },
     { field: "2024", maxWidth: 65 },
     { field: "2023", maxWidth: 65 },
     { field: "Title",
@@ -54,6 +54,7 @@ const App = () => {
     { field: "Media Type", filter: true},
     { field: "Release Date", filter: true},
     { headerName: "Free",
+      colId: "Free",
       filter: true,
       valueGetter: function (params) {
         const country = "US";
@@ -62,6 +63,7 @@ const App = () => {
       }
     },
     { headerName: "Flat Rate (Subscription)",
+      colId: "Flat Rate (Subscription)",
       filter: true,
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.flatrate;
@@ -69,6 +71,7 @@ const App = () => {
       }
     },
     { headerName: "Buy",
+      colId: "Buy",
       filter: true,
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.buy;
@@ -76,6 +79,7 @@ const App = () => {
       }
     },
     { headerName: "Rent",
+      colId: "Rent",
       filter: true,
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.rent;
@@ -122,7 +126,7 @@ const App = () => {
     // console.log("country: " + country);
     // console.log("Providers.results." + selectedCountry + ".link");
     return [
-      { field: "Pos", headerName: "2025", maxWidth: 70 },
+      { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 70 },
       { field: "2024", maxWidth: 70 },
       { field: "2023", maxWidth: 70 },
       { field: "Title", cellRenderer: (params) => {
@@ -139,6 +143,7 @@ const App = () => {
       { field: "Media Type", filter: true},
       { field: "Release Date", filter: true},
       { headerName: "Free",
+        colId: "Free",
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
@@ -146,6 +151,7 @@ const App = () => {
         }
       },
       { headerName: "Flat Rate (Subscription)",
+        colId: "Flat Rate (Subscription)",
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
@@ -153,6 +159,7 @@ const App = () => {
         }
       },
       { headerName: "Buy",
+        colId: "Buy",
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
@@ -160,6 +167,7 @@ const App = () => {
         }
       },
       { headerName: "Rent",
+        colId: "Rent",
         filter: true,
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
@@ -183,7 +191,24 @@ const App = () => {
   //   gridRef.current.api.setColumnsVisible(["Pos"], false);
   // }
 
-  const columnIds = [];
+  const columnIds = [
+    "2025",
+    "2024",
+    "2023",
+    "Title",
+    "Director",
+    "Year",
+    "Country",
+    "Length",
+    "Genre",
+    "Colour",
+    "Media Type",
+    "Release Date",
+    "Free",
+    "Flat Rate (Subscription)",
+    "Buy",
+    "Rent"
+  ];
 
   const [checked, setChecked] = React.useState(new Array(columnIds.length).fill(true));
   const [checked2024, setChecked2024] = React.useState(true);
