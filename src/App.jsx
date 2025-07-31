@@ -285,25 +285,20 @@ const App = () => {
           value={checked2024}
           onChange={handleChange2024}
         /> */}
-        {columnIds.map(({columnId}, index) => {
-          return (
-            <li key ={index}>
+          {columnIds.map((columnId, index) => {
+            return (
               <div>
                 <input
                   type="checkbox"
                   id={`checkbox-${index}`}
-                  name={columnId}
-                  label={columnId}
-                  value={columnId}
                   checked={checked[index]}
                   onChange={() => handleChange(index)}
                 />
                 <label htmlFor={`checkbox-${index}`}>{columnId}</label>
               </div>
-            </li>
-          );
-          }
-        )}
+            );
+            }
+          )}
       </div>
       <div style={{ width: "1400px", height: "500px" }}>
         <AgGridReact
