@@ -4,6 +4,7 @@ import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./components/SelectCountry";
 import { Link } from "react-router";
+import Checkbox from "./components/Checkbox";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -182,6 +183,17 @@ const App = () => {
   //   gridRef.current.api.setColumnsVisible(["Pos"], false);
   // }
 
+  const [checked2025, setChecked2025] = React.useState(true);
+
+  const handleChange2025 = () => {
+    setChecked2025(!checked2025);
+    if (checked2025) {
+      gridRef.current.api.setColumnsVisible(["Pos"], false);
+    } else {
+      gridRef.current.api.setColumnsVisible(["Pos"], true);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -198,6 +210,13 @@ const App = () => {
       {/* <div>
         <button onClick={onBtExclude2025}>2025</button>
       </div> */}
+      <div>
+        <Checkbox
+          label="2025"
+          value={checked2025}
+          onChange={handleChange2025}
+        />
+      </div>
       <div style={{ width: "1400px", height: "500px" }}>
         <AgGridReact
         ref={gridRef}
