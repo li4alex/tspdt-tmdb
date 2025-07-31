@@ -210,22 +210,25 @@ const App = () => {
     "Rent"
   ];
 
-  const [checked, setChecked] = React.useState(new Array(columnIds.length).fill(true));
+  const [checked, setChecked] = useState(new Array(columnIds.length).fill(true));
   const [checked2024, setChecked2024] = React.useState(true);
   const [checked2023, setChecked2023] = React.useState(true);
 
-  const handleChange = (pos) => {
-    const updatedChecked = checked.map((item, index) =>
-      index === pos ? !item : item
-    );
+  const handleChange = (position) => {
+    const updatedChecked = checked.map((item, index) => {
+      if (index === position) {
+        if (item) {
+          gridRef.current.api.setColumnsVisible([columnIds[index]], false);
+        } else {
+          gridRef.current.api.setColumnsVisible([columnIds[index]], true);
+        }
+        return !item;
+      } else {
+        return item;
+      }
+    });
 
     setChecked(updatedChecked);
-    
-    if (item) {
-      gridRef.current.api.setColumnsVisible(columnIds[index], false);
-    } else {
-      gridRef.current.api.setColumnsVisible(columnIds[index], true);
-    }
   };
 
   const handleChangePos = () => {
@@ -284,13 +287,20 @@ const App = () => {
         /> */}
         {columnIds.map(({columnId}, index) => {
           return (
-            <input
-              type="checkbox"
-              id={`checkbox-${index}`}
-              name={columnId}
-              checked={checked[index]}
-              onChange={() => handleChange(index)}
-            />
+            <li key ={index}>
+              <div>
+                <input
+                  type="checkbox"
+                  id={`checkbox-${index}`}
+                  name={columnId}
+                  label={columnId}
+                  value={columnId}
+                  checked={checked[index]}
+                  onChange={() => handleChange(index)}
+                />
+                <label htmlFor={`checkbox-${index}`}>{columnId}</label>
+              </div>
+            </li>
           );
           }
         )}
