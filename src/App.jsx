@@ -178,6 +178,10 @@ const App = () => {
     updateProviders();
   }
 
+  // function onBtExclude2025() {
+  //   gridRef.current.api.setColumnsVisible(["Pos"], false);
+  // }
+
   return (
     <div>
       <div>
@@ -188,7 +192,12 @@ const App = () => {
           Movie titles are links to The Movie Database's streaming provider pages for the movies, which do have the relevant streaming links.
         </p>
       </div>
-      <SelectCountry onSelect={handleSelect} />
+      <div>
+        <SelectCountry onSelect={handleSelect} />
+      </div>
+      {/* <div>
+        <button onClick={onBtExclude2025}>2025</button>
+      </div> */}
       <div style={{ width: "1400px", height: "500px" }}>
         <AgGridReact
         ref={gridRef}
