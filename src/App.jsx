@@ -183,14 +183,50 @@ const App = () => {
   //   gridRef.current.api.setColumnsVisible(["Pos"], false);
   // }
 
-  const [checked2025, setChecked2025] = React.useState(true);
+  const columnIds = [];
 
-  const handleChange2025 = () => {
+  const [checked, setChecked] = React.useState(new Array(columnIds.length).fill(true));
+  const [checked2024, setChecked2024] = React.useState(true);
+  const [checked2023, setChecked2023] = React.useState(true);
+
+  const handleChange = (pos) => {
+    const updatedChecked = checked.map((item, index) =>
+      index === pos ? !item : item
+    );
+
+    setChecked(updatedChecked);
+    
+    if (item) {
+      gridRef.current.api.setColumnsVisible(columnIds[index], false);
+    } else {
+      gridRef.current.api.setColumnsVisible(columnIds[index], true);
+    }
+  };
+
+  const handleChangePos = () => {
     setChecked2025(!checked2025);
     if (checked2025) {
       gridRef.current.api.setColumnsVisible(["Pos"], false);
     } else {
       gridRef.current.api.setColumnsVisible(["Pos"], true);
+    }
+  };
+
+  const handleChange2024 = () => {
+    setChecked2024(!checked2024);
+    if (checked2024) {
+      gridRef.current.api.setColumnsVisible(["2024"], false);
+    } else {
+      gridRef.current.api.setColumnsVisible(["2024"], true);
+    }
+  };
+  
+  const handleChange2023 = () => {
+    setChecked2023(!checked2023);
+    if (checked2023) {
+      gridRef.current.api.setColumnsVisible(["2023"], false);
+    } else {
+      gridRef.current.api.setColumnsVisible(["2023"], true);
     }
   };
 
@@ -211,11 +247,28 @@ const App = () => {
         <button onClick={onBtExclude2025}>2025</button>
       </div> */}
       <div>
-        <Checkbox
+        {/* <Checkbox
           label="2025"
           value={checked2025}
-          onChange={handleChange2025}
+          onChange={handleChangePos}
         />
+        <Checkbox
+          label="2024"
+          value={checked2024}
+          onChange={handleChange2024}
+        /> */}
+        {columnIds.map(({columnId}, index) => {
+          return (
+            <input
+              type="checkbox"
+              id={`checkbox-${index}`}
+              name={columnId}
+              checked={checked[index]}
+              onChange={() => handleChange(index)}
+            />
+          );
+          }
+        )}
       </div>
       <div style={{ width: "1400px", height: "500px" }}>
         <AgGridReact
