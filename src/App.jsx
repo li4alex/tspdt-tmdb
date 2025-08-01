@@ -35,9 +35,9 @@ const App = () => {
   const [rowData, setRowData] = useState([]);
     // Column Definitions: Defines & controls grid columns.
   const [colDefs, setColDefs] = useState([
-    { field: "Pos", headerName: "2025", maxWidth: 65, colId: "2025", filter: true },
-    { field: "2024", maxWidth: 65, filter: true },
-    { field: "2023", maxWidth: 65, filter: true },
+    { field: "Pos", headerName: "2025", maxWidth: 80, colId: "2025", filter: true },
+    { field: "2024", maxWidth: 80, filter: true },
+    { field: "2023", maxWidth: 80, filter: true },
     { field: "Title",
       filter: true,
       cellRenderer: (params) => {
@@ -127,9 +127,9 @@ const App = () => {
     // console.log("country: " + country);
     // console.log("Providers.results." + selectedCountry + ".link");
     return [
-      { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 70, filter: true },
-      { field: "2024", maxWidth: 70, filter: true },
-      { field: "2023", maxWidth: 70, filter: true },
+      { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
+      { field: "2024", maxWidth: 80, filter: true },
+      { field: "2023", maxWidth: 80, filter: true },
       { field: "Title", filter: true, cellRenderer: (params) => {
         return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
       } },
