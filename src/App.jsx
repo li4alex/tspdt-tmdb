@@ -256,9 +256,6 @@ const App = () => {
         defaultColDef={defaultColDef}
         pagination={true}
         // onGridReady={onGridReady}
-        frameworkComponents={{
-          LinkCellRenderer
-        }}
       />
       </div>
     </div>
