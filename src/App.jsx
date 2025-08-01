@@ -89,10 +89,6 @@ const App = () => {
     }
   ]);
 
-  const LinkCellRenderer = (params) => (
-    <Link to={`https://google.com`}>params.value</Link>
-  );
-
   function retrieveProviders(providerData) {
     if (providerData) {
       let result = "";
