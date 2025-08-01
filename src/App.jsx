@@ -115,17 +115,11 @@ const App = () => {
   //   .then(rowData => setRowData(rowData));
   // }, []);
 
-
   const updateProviders = useCallback(() => {
-    // console.log("updateProviders country: " + country);
     gridRef.current.api.setGridOption("columnDefs", updateProviderCols());
   }, []);
 
   const updateProviderCols = () => {
-    console.log("updateProviderCols selectedCountry: " + selectedCountry);
-    // console.log("Providers.results." + country + ".link");
-    // console.log("country: " + country);
-    // console.log("Providers.results." + selectedCountry + ".link");
     return [
       { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
       { field: "2024", maxWidth: 80, filter: true },
@@ -183,7 +177,6 @@ const App = () => {
   };
 
   const handleSelect = (country, params) => {
-    console.log("handleSelect country: " + country);
     selectedCountry = country;
     updateProviders();
   }
