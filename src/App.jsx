@@ -52,7 +52,7 @@ const App = () => {
     { field: "Release Date", filter: true },
     { field: "Year", filter: true, initialHide: true },
     { field: "Country", filter: true },
-    { field: "Length", filter: true },
+    { field: "Length", maxWidth: 91, filter: true },
     { field: "Genre", filter: true, initialHide: true },
     { field: "Colour", filter: true, initialHide: true },
     { field: "Media Type", filter: true, initialHide: true },
@@ -135,7 +135,7 @@ const App = () => {
       { field: "Release Date", filter: true},
       { field: "Year", filter: true},
       { field: "Country", filter: true},
-      { field: "Length", filter: true},
+      { field: "Length", maxWidth: 91, filter: true},
       { field: "Genre", filter: true},
       { field: "Colour", filter: true},
       { field: "Media Type", filter: true},
@@ -271,7 +271,7 @@ const App = () => {
             }
           )}
       </div>
-      <div style={{ width: "1400px", height: "500px" }}>
+      <div style={{ width: "1440px", height: "500px" }}>
         <AgGridReact
         ref={gridRef}
         rowData={rowData}
