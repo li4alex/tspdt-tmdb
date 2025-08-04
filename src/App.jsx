@@ -49,7 +49,7 @@ const App = () => {
       filterParams: directorFilterParams,
       wrapText: true
     },
-    { field: "Release Date", filter: true },
+    { field: "Release Date", maxWidth: 128, filter: true },
     { field: "Year", filter: true, initialHide: true },
     { field: "Country", filter: true },
     { field: "Length", maxWidth: 91, filter: true },
@@ -132,7 +132,7 @@ const App = () => {
       { field: "Director",
         filter: true,
         filterParams: directorFilterParams},
-      { field: "Release Date", filter: true},
+      { field: "Release Date", maxWidth: 128, filter: true},
       { field: "Year", filter: true},
       { field: "Country", filter: true},
       { field: "Length", maxWidth: 91, filter: true},
