@@ -46,8 +46,8 @@ const App = () => {
     },
     { field: "Director",
       filter: true,
-      filterParams: directorFilterParams,
-      wrapText: true
+      filterParams: directorFilterParams
+      // cellStyle: { "white-space": "pre-line" }
     },
     { field: "Release Date", maxWidth: 128, filter: true },
     { field: "Year", maxWidth: 74, filter: true, initialHide: true },
@@ -179,7 +179,9 @@ const App = () => {
   };
 
   const defaultColDef = {
-    flex: 1,
+    // flex: 1,
+    wrapText: true,
+    autoHeight: true
   };
 
   const handleSelect = (country, params) => {
@@ -271,7 +273,7 @@ const App = () => {
             }
           )}
       </div>
-      <div style={{ width: "1440px", height: "500px" }}>
+      <div style={{ width: "1440px", height: "1080px" }}>
         <AgGridReact
         ref={gridRef}
         rowData={rowData}
