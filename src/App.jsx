@@ -63,8 +63,7 @@ const App = () => {
         const country = "US";
         const providerData = params["data"]["Providers"]["results"][country]["free"];
         return retrieveProviders(providerData);
-      },
-      wrapText: true
+      }
     },
     { headerName: "Flat Rate (Subscription)",
       colId: "Flat Rate (Subscription)",
@@ -72,8 +71,7 @@ const App = () => {
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.flatrate;
         return retrieveProviders(providerData);
-      },
-      wrapText: true
+      }
     },
     { headerName: "Buy",
       colId: "Buy",
@@ -81,8 +79,7 @@ const App = () => {
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.buy;
         return retrieveProviders(providerData);
-      },
-      wrapText: true
+      }
     },
     { headerName: "Rent",
       colId: "Rent",
@@ -90,8 +87,7 @@ const App = () => {
       valueGetter: function (params) {
         const providerData = params.data.Providers.results.US.rent;
         return retrieveProviders(providerData);
-      },
-      wrapText: true
+      }
     }
   ]);
 
@@ -145,8 +141,7 @@ const App = () => {
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
           return retrieveProviders(providerData);
-        },
-        wrapText: true
+        }
       },
       { headerName: "Flat Rate (Subscription)",
         colId: "Flat Rate (Subscription)",
@@ -154,8 +149,7 @@ const App = () => {
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
           return retrieveProviders(providerData);
-        },
-        wrapText: true
+        }
       },
       { headerName: "Buy",
         colId: "Buy",
@@ -163,8 +157,7 @@ const App = () => {
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
           return retrieveProviders(providerData);
-        },
-        wrapText: true
+        }
       },
       { headerName: "Rent",
         colId: "Rent",
@@ -172,8 +165,7 @@ const App = () => {
         valueGetter: function (params) {
           const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
           return retrieveProviders(providerData);
-        },
-        wrapText: true
+        }
       },
     ];
   };
@@ -275,7 +267,7 @@ const App = () => {
             }
           )}
       </div>
-      <div style={{ width: "1440px", height: "1080px" }}>
+      <div style={{ width: "auto", height: "1080px" }}>
         <AgGridReact
         ref={gridRef}
         rowData={rowData}
