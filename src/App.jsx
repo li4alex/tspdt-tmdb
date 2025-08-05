@@ -181,7 +181,9 @@ const App = () => {
   const defaultColDef = {
     // flex: 1,
     wrapText: true,
-    autoHeight: true
+    autoHeight: true,
+    wrapHeaderText: true,
+    autoHeaderHeight: true
   };
 
   const handleSelect = (country, params) => {
