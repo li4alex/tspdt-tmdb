@@ -40,6 +40,7 @@ const App = () => {
     { field: "2023", maxWidth: 80, filter: true, initialHide: true },
     { field: "Title",
       filter: true,
+      maxWidth: 130,
       cellRenderer: (params) => {
         return <a href= {params.data.Providers.results.US.link} target="_blank" rel="noopener"> {params.value} </a>
       }
@@ -122,7 +123,7 @@ const App = () => {
       { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
       { field: "2024", maxWidth: 80, filter: true },
       { field: "2023", maxWidth: 80, filter: true },
-      { field: "Title", filter: true, cellRenderer: (params) => {
+      { field: "Title", maxWidth: 130, filter: true, cellRenderer: (params) => {
         return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
       } },
       { field: "Director",
