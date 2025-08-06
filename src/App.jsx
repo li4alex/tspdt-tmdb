@@ -174,7 +174,7 @@ const App = () => {
   };
 
   const defaultColDef = {
-    // flex: 1,
+    flex: 1,
     wrapText: true,
     autoHeight: true,
     wrapHeaderText: true,
