@@ -46,6 +46,7 @@ const App = () => {
       }
     },
     { field: "Director",
+      maxWidth: 130,
       filter: true,
       filterParams: directorFilterParams
       // cellStyle: { "white-space": "pre-line" }
@@ -127,6 +128,7 @@ const App = () => {
         return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
       } },
       { field: "Director",
+        maxWidth: 130,
         filter: true,
         filterParams: directorFilterParams},
       { field: "Release Date", maxWidth: 128, filter: true},
