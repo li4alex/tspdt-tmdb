@@ -66,3 +66,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.ag-cell {
+  --reduceLineHeightBy: 16px;
+  line-height: calc(
+    var(--ag-internal-calculated-line-height) - var(--reduceLineHeightBy)
+  );
+  padding-top: calc(var(--reduceLineHeightBy) / 2);
+  padding-bottom: calc(var(--reduceLineHeightBy) / 2);
+}
