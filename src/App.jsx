@@ -267,8 +267,7 @@ const App = () => {
                 {columnId}
               </label>
             );
-            }
-          )}
+          })}
       </div>
       <div className="grid-wrapper" style={{ width: "auto", height: "1080px" }}>
         <AgGridReact
