@@ -278,7 +278,7 @@ const App = () => {
         defaultColDef={defaultColDef}
         pagination={true}
         // onGridReady={onGridReady}
-      />
+        />
       </div>
     </div>
   );
