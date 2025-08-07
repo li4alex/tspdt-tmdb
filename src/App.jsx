@@ -270,7 +270,7 @@ const App = () => {
             }
           )}
       </div>
-      <div style={{ width: "auto", height: "1080px" }}>
+      <div className="grid-wrapper" style={{ width: "auto", height: "1080px" }}>
         <AgGridReact
         ref={gridRef}
         rowData={rowData}
