@@ -36,10 +36,10 @@ const directorFilterParams = {
 
 const App = () => {
   const gridRef = useRef(null);
+  const windowWidth = useRef(window.innerWidth);
   // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState([]);
-    // Column Definitions: Defines & controls grid columns.
   const [colDefs, setColDefs] = useState([
     { field: "Pos", headerName: "2025", maxWidth: 80, colId: "2025", filter: true },
     { field: "2024", maxWidth: 80, filter: true },
@@ -55,7 +55,6 @@ const App = () => {
       maxWidth: 130,
       filter: true,
       filterParams: directorFilterParams
-      // cellStyle: { "white-space": "pre-line" }
     },
     { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true },
     { field: "Year", maxWidth: 74, filter: true, initialHide: true },
@@ -114,12 +113,6 @@ const App = () => {
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
   }, []);
-
-  // const onGridReady = useEffect(() => {
-  //   fetch("./script/tmdb_final_10_us.json")
-  //   .then(result => result.json())
-  //   .then(rowData => setRowData(rowData));
-  // }, []);
 
   const updateProviders = useCallback(() => {
     gridRef.current.api.setGridOption("columnDefs", updateProviderCols());
@@ -192,6 +185,23 @@ const App = () => {
     updateProviders();
   }
 
+  const handleChange = (position) => {
+    const updatedChecked = checked.map((item, index) => {
+      if (index === position) {
+        if (item) {
+          gridRef.current.api.setColumnsVisible([columnIds[index]], false);
+        } else {
+          gridRef.current.api.setColumnsVisible([columnIds[index]], true);
+        }
+        return !item;
+      } else {
+        return item;
+      }
+    });
+
+    setChecked(updatedChecked);
+  };
+
   const columnIds = [
     "2025",
     "2024",
@@ -229,23 +239,25 @@ const App = () => {
     true,
     true
   ]);
-
-  const handleChange = (position) => {
-    const updatedChecked = checked.map((item, index) => {
-      if (index === position) {
-        if (item) {
-          gridRef.current.api.setColumnsVisible([columnIds[index]], false);
-        } else {
-          gridRef.current.api.setColumnsVisible([columnIds[index]], true);
-        }
-        return !item;
-      } else {
-        return item;
-      }
-    });
-
-    setChecked(updatedChecked);
-  };
+  
+  const onGridReady = useCallback((params) => {
+    if (windowWidth.current <= MAX_BUY_WIDTH) {
+      params.api.setColumnsVisible([columnIds[14]], false);
+      checked[14] = false;
+    }
+    if (windowWidth.current <= MAX_RENT_WIDTH) {
+      params.api.setColumnsVisible([columnIds[15]], false);
+      checked[15] = false;
+    }
+    if (windowWidth.current <= MAX_COUNTRY_WIDTH) {
+      params.api.setColumnsVisible([columnIds[7]], false);
+      checked[7] = false;
+    }
+    if (windowWidth.current <= MAX_2024_WIDTH) {
+      params.api.setColumnsVisible([columnIds[1]], false);
+      checked[1] = false;
+    }
+  }, []);
 
   const buyThreshold = useWindowResizeThreshold(MAX_BUY_WIDTH);
 
@@ -318,7 +330,7 @@ const App = () => {
         columnDefs={colDefs}
         defaultColDef={defaultColDef}
         pagination={true}
-        // onGridReady={onGridReady}
+        onGridReady={onGridReady}
         />
       </div>
     </div>
