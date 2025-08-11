@@ -11,9 +11,10 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 let selectedCountry = "";
 
-const MAX_MOBILE_WIDTH = 600;
-
 const MAX_BUY_WIDTH = 1295;
+const MAX_RENT_WIDTH = 1156;
+const MAX_COUNTRY_WIDTH = 1025;
+const MAX_2024_WIDTH = 796;
 
 const directorFilterParams = {
   textFormatter: (r) => {
@@ -246,15 +247,6 @@ const App = () => {
     setChecked(updatedChecked);
   };
 
-  // const isMobileSize = useWindowResizeThreshold(MAX_MOBILE_WIDTH);
-
-  // useEffect(() => {
-  //   if (gridRef.current.api) {
-  //     gridRef.current.api.setColumnsVisible([columnIds[1]], false);
-  //     checked[1] = false;
-  //   }
-  // }, [isMobileSize])
-
   const buyThreshold = useWindowResizeThreshold(MAX_BUY_WIDTH);
 
   useEffect(() => {
@@ -264,7 +256,7 @@ const App = () => {
     }
   }, [buyThreshold])
 
-  const MAX_RENT_WIDTH = 1156;
+  
 
   const rentThreshold = useWindowResizeThreshold(MAX_RENT_WIDTH);
 
@@ -275,7 +267,7 @@ const App = () => {
     }
   }, [rentThreshold])
 
-  const MAX_COUNTRY_WIDTH = 1025;
+  
 
   const countryThreshold = useWindowResizeThreshold(MAX_COUNTRY_WIDTH);
 
@@ -285,8 +277,6 @@ const App = () => {
       checked[7] = false;
     }
   }, [countryThreshold])
-
-  const MAX_2024_WIDTH = 796;
 
   const pos2024Threshold = useWindowResizeThreshold(MAX_2024_WIDTH);
 
