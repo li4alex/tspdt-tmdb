@@ -254,7 +254,7 @@ const App = () => {
       gridRef.current.api.setColumnsVisible([columnIds[14]], false);
       checked[14] = false;
     }
-  }, [buyThreshold])  
+  }, [buyThreshold]);
 
   const rentThreshold = useWindowResizeThreshold(MAX_RENT_WIDTH);
 
@@ -263,7 +263,7 @@ const App = () => {
       gridRef.current.api.setColumnsVisible([columnIds[15]], false);
       checked[15] = false;
     }
-  }, [rentThreshold])
+  }, [rentThreshold]);
 
   const countryThreshold = useWindowResizeThreshold(MAX_COUNTRY_WIDTH);
 
@@ -272,7 +272,7 @@ const App = () => {
       gridRef.current.api.setColumnsVisible([columnIds[7]], false);
       checked[7] = false;
     }
-  }, [countryThreshold])
+  }, [countryThreshold]);
 
   const pos2024Threshold = useWindowResizeThreshold(MAX_2024_WIDTH);
 
@@ -281,7 +281,7 @@ const App = () => {
       gridRef.current.api.setColumnsVisible([columnIds[1]], false);
       checked[1] = false;
     }
-  }, [pos2024Threshold])
+  }, [pos2024Threshold]);
 
   return (
     <div>
