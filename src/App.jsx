@@ -56,7 +56,7 @@ const App = () => {
       filterParams: directorFilterParams
       // cellStyle: { "white-space": "pre-line" }
     },
-    { field: "Release Date", maxWidth: 128, filter: true },
+    { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true },
     { field: "Year", maxWidth: 74, filter: true, initialHide: true },
     { field: "Country", maxWidth: 98, filter: true },
     { field: "Length", maxWidth: 91, filter: true },
@@ -136,7 +136,7 @@ const App = () => {
         maxWidth: 130,
         filter: true,
         filterParams: directorFilterParams},
-      { field: "Release Date", maxWidth: 128, filter: true},
+      { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true},
       { field: "Year", maxWidth: 74, filter: true},
       { field: "Country", maxWidth: 98, filter: true},
       { field: "Length", maxWidth: 91, filter: true},
