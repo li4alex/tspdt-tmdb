@@ -355,6 +355,12 @@ const App = () => {
     <div>
       <div>
         <p>
+          Best on desktop. Some columns will automatically hide when window width is reduced.
+        </p>
+        <p>
+          Click on a column to sort by it. Click on the three dash menu icons to filter by column.
+        </p>
+        <p>
           Provider data is sourced from The Movie Database, which does not provide direct streaming links.
         </p>
         <p>
