@@ -11,10 +11,10 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 let selectedCountry = "";
 
-const MAX_BUY_WIDTH = 1295;
-const MAX_RENT_WIDTH = 1156;
-const MAX_COUNTRY_WIDTH = 1025;
-const MAX_2024_WIDTH = 796;
+const MIN_BUY_WIDTH = 1295;
+const MIN_RENT_WIDTH = 1156;
+const MIN_COUNTRY_WIDTH = 1025;
+const MIN_2024_WIDTH = 796;
 
 const directorFilterParams = {
   textFormatter: (r) => {
@@ -241,57 +241,113 @@ const App = () => {
   ]);
   
   const onGridReady = useCallback((params) => {
-    if (windowWidth.current <= MAX_BUY_WIDTH) {
+    if (windowWidth.current <= MIN_BUY_WIDTH) {
       params.api.setColumnsVisible([columnIds[14]], false);
-      checked[14] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 14) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
-    if (windowWidth.current <= MAX_RENT_WIDTH) {
+    if (windowWidth.current <= MIN_RENT_WIDTH) {
       params.api.setColumnsVisible([columnIds[15]], false);
-      checked[15] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 15) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
-    if (windowWidth.current <= MAX_COUNTRY_WIDTH) {
+    if (windowWidth.current <= MIN_COUNTRY_WIDTH) {
       params.api.setColumnsVisible([columnIds[7]], false);
-      checked[7] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 7) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
-    if (windowWidth.current <= MAX_2024_WIDTH) {
+    if (windowWidth.current <= MIN_2024_WIDTH) {
       params.api.setColumnsVisible([columnIds[1]], false);
-      checked[1] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 1) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
   }, []);
 
-  const buyThreshold = useWindowResizeThreshold(MAX_BUY_WIDTH);
+  const buyThreshold = useWindowResizeThreshold(MIN_BUY_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
       gridRef.current.api.setColumnsVisible([columnIds[14]], false);
-      checked[14] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 14) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
   }, [buyThreshold]);
 
-  const rentThreshold = useWindowResizeThreshold(MAX_RENT_WIDTH);
+  const rentThreshold = useWindowResizeThreshold(MIN_RENT_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
       gridRef.current.api.setColumnsVisible([columnIds[15]], false);
-      checked[15] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 15) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
   }, [rentThreshold]);
 
-  const countryThreshold = useWindowResizeThreshold(MAX_COUNTRY_WIDTH);
+  const countryThreshold = useWindowResizeThreshold(MIN_COUNTRY_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
       gridRef.current.api.setColumnsVisible([columnIds[7]], false);
-      checked[7] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 7) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
   }, [countryThreshold]);
 
-  const pos2024Threshold = useWindowResizeThreshold(MAX_2024_WIDTH);
+  const pos2024Threshold = useWindowResizeThreshold(MIN_2024_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
       gridRef.current.api.setColumnsVisible([columnIds[1]], false);
-      checked[1] = false;
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 1) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
     }
   }, [pos2024Threshold]);
 
