@@ -211,7 +211,7 @@ const App = () => {
     "Release Date",
     "Year",
     "Country",
-    "Length",
+    "Mins",
     "Genre",
     "Colour",
     "Media Type",
