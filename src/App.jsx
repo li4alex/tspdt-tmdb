@@ -386,7 +386,7 @@ const App = () => {
           Best on desktop. Some columns will automatically hide when window width is reduced.
         </p>
         <p>
-          Click on a column to sort by it. Click on the three dash menu icons to filter by that column.
+          Click on a column to sort by it. Click on the three dash menu icons to filter by that column. To reset a filter from blank/not blank, just select any other dropdown option and clear the text field.
         </p>
         <p>
           Provider data is sourced from The Movie Database, which does not provide direct streaming links.
