@@ -48,7 +48,11 @@ const App = () => {
       filter: true,
       maxWidth: 130,
       cellRenderer: (params) => {
-        return <a href= {params.data.Providers.results.US.link} target="_blank" rel="noopener"> {params.value} </a>
+        if (params.data.Providers.results.US) {
+          return <a href= {params.data.Providers.results.US.link} target="_blank" rel="noopener"> {params.value} </a>
+        } else {
+          return params.value;
+        }        
       }
     },
     { field: "Director",
@@ -68,32 +72,43 @@ const App = () => {
       filter: true,
       valueGetter: function (params) {
         const country = "US";
-        const providerData = params["data"]["Providers"]["results"][country]["free"];
-        return retrieveProviders(providerData);
+        if (params["data"]["Providers"]["results"][country]) {
+          const providerData = params["data"]["Providers"]["results"][country]["free"];
+          return retrieveProviders(providerData);
+        }
       }
     },
     { headerName: "Flat Rate (Subscription)",
       colId: "Flat Rate (Subscription)",
       filter: true,
       valueGetter: function (params) {
-        const providerData = params.data.Providers.results.US.flatrate;
-        return retrieveProviders(providerData);
+        const country = "US";
+        if (params["data"]["Providers"]["results"][country]) {
+          const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
+          return retrieveProviders(providerData);
+        }
       }
     },
     { headerName: "Buy",
       colId: "Buy",
       filter: true,
       valueGetter: function (params) {
-        const providerData = params.data.Providers.results.US.buy;
-        return retrieveProviders(providerData);
+        const country = "US";
+        if (params["data"]["Providers"]["results"][country]) {
+          const providerData = params["data"]["Providers"]["results"][country]["buy"];
+          return retrieveProviders(providerData);
+        }
       }
     },
     { headerName: "Rent",
       colId: "Rent",
       filter: true,
       valueGetter: function (params) {
-        const providerData = params.data.Providers.results.US.rent;
-        return retrieveProviders(providerData);
+        const country = "US";
+        if (params["data"]["Providers"]["results"][country]) {
+          const providerData = params["data"]["Providers"]["results"][country]["rent"];
+          return retrieveProviders(providerData);
+        }
       }
     }
   ]);
@@ -109,7 +124,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetch("./script/tmdb_final_10.json")
+    fetch("./script/tmdb_final.json")
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
   }, []);
@@ -124,7 +139,12 @@ const App = () => {
       { field: "2024", maxWidth: 80, filter: true },
       { field: "2023", maxWidth: 80, filter: true },
       { field: "Title", maxWidth: 130, filter: true, cellRenderer: (params) => {
-        return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
+        if (params["data"]["Providers"]["results"][selectedCountry]) {
+          return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
+        } else {
+          return params.value;
+        }
+        
       } },
       { field: "Director",
         maxWidth: 130,
@@ -141,32 +161,40 @@ const App = () => {
         colId: "Free",
         filter: true,
         valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
-          return retrieveProviders(providerData);
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
+            return retrieveProviders(providerData);
+          }
         }
       },
       { headerName: "Flat Rate (Subscription)",
         colId: "Flat Rate (Subscription)",
         filter: true,
         valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
-          return retrieveProviders(providerData);
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
+            return retrieveProviders(providerData);
+          }
         }
       },
       { headerName: "Buy",
         colId: "Buy",
         filter: true,
         valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
-          return retrieveProviders(providerData);
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
+            return retrieveProviders(providerData);
+          }
         }
       },
       { headerName: "Rent",
         colId: "Rent",
         filter: true,
         valueGetter: function (params) {
-          const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
-          return retrieveProviders(providerData);
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
+            return retrieveProviders(providerData);
+          }
         }
       },
     ];
