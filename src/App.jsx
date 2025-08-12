@@ -6,7 +6,6 @@ import SelectCountry from "./components/SelectCountry";
 import { Link } from "react-router";
 import Checkbox from "./components/Checkbox";
 import useWindowResizeThreshold from "./components/UseWindowResizeThreshold";
-import reactHooks from "eslint-plugin-react-hooks"
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
