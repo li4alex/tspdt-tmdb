@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 
 const useWindowResizeThreshold = threshold => {
-  const [isMobileSize, setIsMobileSize] = useState(window.innerWidth <= threshold);
+  const [isSize, setIsSize] = useState(window.innerWidth <= threshold);
   const prevWidth = useRef(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
       const currWidth = window.innerWidth;
       if (currWidth <= threshold && prevWidth.current > threshold){
-        setIsMobileSize(true);
+        setIsSize(true);
       } else if (currWidth > threshold && prevWidth.current <= threshold) {
-        setIsMobileSize(false);
+        setIsSize(false);
       }
       prevWidth.current = currWidth;
     }
@@ -19,7 +19,7 @@ const useWindowResizeThreshold = threshold => {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  return isMobileSize;
+  return isSize;
 }
 
 export default useWindowResizeThreshold
