@@ -11,10 +11,10 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 let selectedCountry = "";
 
-const MIN_BUY_WIDTH = 1295;
-const MIN_RENT_WIDTH = 1156;
-const MIN_COUNTRY_WIDTH = 1025;
-const MIN_2024_WIDTH = 796;
+const MIN_BUY_WIDTH = 1344;
+const MIN_RENT_WIDTH = 1207;
+const MIN_COUNTRY_WIDTH = 1075;
+const MIN_2024_WIDTH = 837;
 
 const directorFilterParams = {
   textFormatter: (r) => {
