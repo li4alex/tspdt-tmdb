@@ -16,6 +16,7 @@ const MIN_RENT_WIDTH = 1207;
 const MIN_COUNTRY_WIDTH = 1075;
 const MIN_2024_WIDTH = 837;
 const MIN_DIRECTOR_WIDTH = 740;
+const MIN_RELEASE_DATE_WIDTH = 635;
 
 const directorFilterParams = {
   textFormatter: (r) => {
@@ -325,6 +326,17 @@ const App = () => {
       });
       setChecked(updatedChecked); 
     }
+    if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH) {
+      params.api.setColumnsVisible([columnIds[5]], false);
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 4) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
+    }
   }, []);
 
   const buyThreshold = useWindowResizeThreshold(MIN_BUY_WIDTH);
@@ -406,6 +418,22 @@ const App = () => {
       setChecked(updatedChecked); 
     }
   }, [directorThreshold]);
+
+  const releaseDateThreshold = useWindowResizeThreshold(MIN_RELEASE_DATE_WIDTH);
+
+  useEffect(() => {
+    if (gridRef.current.api) {
+      gridRef.current.api.setColumnsVisible([columnIds[5]], false);
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 5) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
+    }
+  }, [releaseDateThreshold]);
 
   return (
     <div>
