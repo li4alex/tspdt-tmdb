@@ -269,73 +269,50 @@ const App = () => {
     true,
     true
   ]);
+
+  const initialChecked = checked.map((item, index) => {
+    if (windowWidth.current <= MIN_BUY_WIDTH && index === 14) {
+      return false;
+    }
+    if (windowWidth.current <= MIN_RENT_WIDTH && index === 15) {
+      return false;
+    }
+    if (windowWidth.current <= MIN_COUNTRY_WIDTH && index === 7) {
+      return false;
+    }
+    if (windowWidth.current <= MIN_2024_WIDTH && index === 1) {
+      return false;
+    }
+    if (windowWidth.current <= MIN_DIRECTOR_WIDTH && index === 4) {
+      return false;
+    }
+    if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH && index === 5) {
+      return false;
+    }
+    else {
+      return item;
+    }
+  });
+  useEffect(() => {setChecked(initialChecked);}, []);
   
   const onGridReady = useCallback((params) => {
     if (windowWidth.current <= MIN_BUY_WIDTH) {
       params.api.setColumnsVisible([columnIds[14]], false);
-      const updatedChecked = checked.map((item, index) => {
-        if (index === 14) {
-          return false
-        } else {
-          return item;
-        }
-      });
-      setChecked(updatedChecked); 
     }
     if (windowWidth.current <= MIN_RENT_WIDTH) {
       params.api.setColumnsVisible([columnIds[15]], false);
-      const updatedChecked = checked.map((item, index) => {
-        if (index === 15) {
-          return false
-        } else {
-          return item;
-        }
-      });
-      setChecked(updatedChecked); 
     }
     if (windowWidth.current <= MIN_COUNTRY_WIDTH) {
       params.api.setColumnsVisible([columnIds[7]], false);
-      const updatedChecked = checked.map((item, index) => {
-        if (index === 7) {
-          return false
-        } else {
-          return item;
-        }
-      });
-      setChecked(updatedChecked); 
     }
     if (windowWidth.current <= MIN_2024_WIDTH) {
       params.api.setColumnsVisible([columnIds[1]], false);
-      const updatedChecked = checked.map((item, index) => {
-        if (index === 1) {
-          return false
-        } else {
-          return item;
-        }
-      });
-      setChecked(updatedChecked); 
     }
     if (windowWidth.current <= MIN_DIRECTOR_WIDTH) {
       params.api.setColumnsVisible([columnIds[4]], false);
-      const updatedChecked = checked.map((item, index) => {
-        if (index === 4) {
-          return false
-        } else {
-          return item;
-        }
-      });
-      setChecked(updatedChecked); 
     }
     if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH) {
       params.api.setColumnsVisible([columnIds[5]], false);
-      const updatedChecked = checked.map((item, index) => {
-        if (index === 5) {
-          return false
-        } else {
-          return item;
-        }
-      });
-      setChecked(updatedChecked); 
     }
   }, []);
 
