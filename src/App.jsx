@@ -329,7 +329,7 @@ const App = () => {
     if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH) {
       params.api.setColumnsVisible([columnIds[5]], false);
       const updatedChecked = checked.map((item, index) => {
-        if (index === 4) {
+        if (index === 5) {
           return false
         } else {
           return item;
