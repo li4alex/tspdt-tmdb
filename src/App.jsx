@@ -42,7 +42,7 @@ const App = () => {
   // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState([]);
-  const [colDefs, setColDefs] = useState([
+  const [colDefs] = useState([
     { field: "Pos", headerName: "2025", maxWidth: 80, colId: "2025", filter: true },
     { field: "2024", maxWidth: 80, filter: true },
     { field: "2023", maxWidth: 80, filter: true, initialHide: true },
