@@ -206,7 +206,7 @@ const App = () => {
     autoHeaderHeight: true
   };
 
-  const handleSelect = (country, params) => {
+  const handleSelect = (country) => {
     selectedCountry = country;
     updateProviders();
   }
