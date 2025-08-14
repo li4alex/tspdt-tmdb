@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./components/SelectCountry";
@@ -434,7 +434,7 @@ const App = () => {
       <div className="checkboxes">
         {columnIds.map((columnId, index) => {
           return (
-            <label>
+            <label htmlFor={`checkbox-${index}`}>
               <input
                 type="checkbox"
                 id={`checkbox-${index}`}
