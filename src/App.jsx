@@ -131,10 +131,6 @@ const App = () => {
     .then(rowData => setRowData(rowData));
   }, []);
 
-  const updateProviders = useCallback(() => {
-    gridRef.current.api.setGridOption("columnDefs", updateProviderCols());
-  }, []);
-
   const updateProviderCols = () => {
     return [
       { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
@@ -214,6 +210,10 @@ const App = () => {
     selectedCountry = country;
     updateProviders();
   }
+
+  const updateProviders = useCallback(() => {
+    gridRef.current.api.setGridOption("columnDefs", updateProviderCols());
+  }, []);
 
   const handleChange = (position) => {
     const updatedChecked = checked.map((item, index) => {
