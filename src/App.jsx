@@ -125,10 +125,72 @@ const App = () => {
     }
   };
 
+  const columnIds = [
+    "2025",
+    "2024",
+    "2023",
+    "Title",
+    "Director",
+    "Release Date",
+    "Year",
+    "Country",
+    "Mins",
+    "Genre",
+    "Colour",
+    "Media Type",
+    "Free",
+    "Flat Rate (Subscription)",
+    "Buy",
+    "Rent"
+  ];
+
+  const [checked, setChecked] = useState([
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+    true
+  ]);
+
   useEffect(() => {
     fetch("./script/tmdb_final.json")
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
+    const initialChecked = checked.map((item, index) => {
+      if (windowWidth.current <= MIN_BUY_WIDTH && index === 14) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_RENT_WIDTH && index === 15) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_COUNTRY_WIDTH && index === 7) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_2024_WIDTH && index === 1) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_DIRECTOR_WIDTH && index === 4) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH && index === 5) {
+        return false;
+      }
+      else {
+        return item;
+      }
+    });
+    setChecked(initialChecked);
   }, []);
 
   const updateProviderCols = () => {
@@ -231,71 +293,6 @@ const App = () => {
 
     setChecked(updatedChecked);
   };
-
-  const columnIds = [
-    "2025",
-    "2024",
-    "2023",
-    "Title",
-    "Director",
-    "Release Date",
-    "Year",
-    "Country",
-    "Mins",
-    "Genre",
-    "Colour",
-    "Media Type",
-    "Free",
-    "Flat Rate (Subscription)",
-    "Buy",
-    "Rent"
-  ];
-
-  const [checked, setChecked] = useState([
-    true,
-    true,
-    false,
-    true,
-    true,
-    true,
-    false,
-    true,
-    true,
-    false,
-    false,
-    false,
-    true,
-    true,
-    true,
-    true
-  ]);
-
-  useEffect(() => {
-    const initialChecked = checked.map((item, index) => {
-      if (windowWidth.current <= MIN_BUY_WIDTH && index === 14) {
-        return false;
-      }
-      if (windowWidth.current <= MIN_RENT_WIDTH && index === 15) {
-        return false;
-      }
-      if (windowWidth.current <= MIN_COUNTRY_WIDTH && index === 7) {
-        return false;
-      }
-      if (windowWidth.current <= MIN_2024_WIDTH && index === 1) {
-        return false;
-      }
-      if (windowWidth.current <= MIN_DIRECTOR_WIDTH && index === 4) {
-        return false;
-      }
-      if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH && index === 5) {
-        return false;
-      }
-      else {
-        return item;
-      }
-    });
-    setChecked(initialChecked);
-  }, []);
   
   const onGridReady = useCallback((params) => {
     if (windowWidth.current <= MIN_BUY_WIDTH) {
