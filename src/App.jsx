@@ -65,7 +65,7 @@ const App = () => {
     { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true },
     { field: "Year", maxWidth: 74, filter: true, initialHide: true },
     { field: "Country", maxWidth: 98, filter: true },
-    { field: "Length", headerName: "Mins", maxWidth: 91, filter: true },
+    { field: "Length", headerName: "Mins", colId: "Mins", maxWidth: 91, filter: true },
     { field: "Genre", filter: true, initialHide: true },
     { field: "Colour", maxWidth: 90, filter: true, initialHide: true },
     { field: "Media Type", filter: true, initialHide: true },
@@ -195,6 +195,23 @@ const App = () => {
     });
     setChecked(initialChecked);
   }, []);
+  
+  const handleChange = (position) => {
+    const updatedChecked = checked.map((item, index) => {
+      if (index === position) {
+        if (item) {
+          gridRef.current.api.setColumnsVisible([columnIds[index]], false);
+        } else {
+          gridRef.current.api.setColumnsVisible([columnIds[index]], true);
+        }
+        return !item;
+      } else {
+        return item;
+      }
+    });
+
+    setChecked(updatedChecked);
+  };  
 
   const updateProviderCols = () => {
     return [
@@ -216,7 +233,7 @@ const App = () => {
       { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true},
       { field: "Year", maxWidth: 74, filter: true},
       { field: "Country", maxWidth: 98, filter: true},
-      { field: "Length", headerName: "Mins", maxWidth: 91, filter: true},
+      { field: "Length", headerName: "Mins", colId: "Mins", maxWidth: 91, filter: true},
       { field: "Genre", filter: true},
       { field: "Colour", maxWidth: 90, filter: true},
       { field: "Media Type", filter: true},
@@ -276,23 +293,6 @@ const App = () => {
     setColDefs(updateProviderCols);
   }
 
-  const handleChange = (position) => {
-    const updatedChecked = checked.map((item, index) => {
-      if (index === position) {
-        if (item) {
-          gridRef.current.api.setColumnsVisible([columnIds[index]], false);
-        } else {
-          gridRef.current.api.setColumnsVisible([columnIds[index]], true);
-        }
-        return !item;
-      } else {
-        return item;
-      }
-    });
-
-    setChecked(updatedChecked);
-  };
-  
   const onGridReady = useCallback((params) => {
     if (windowWidth.current <= MIN_BUY_WIDTH) {
       params.api.setColumnsVisible([columnIds[14]], false);
