@@ -436,6 +436,7 @@ const App = () => {
           return (
             <label htmlFor={`checkbox-${index}`}>
               <input
+                key= {columnId[index]}
                 type="checkbox"
                 id={`checkbox-${index}`}
                 checked={checked[index]}
