@@ -167,6 +167,9 @@ const App = () => {
     fetch("./script/tmdb_final.json")
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
+  }, []);
+
+  useEffect(() => {
     const initialChecked = checked.map((item, index) => {
       if (windowWidth.current <= MIN_BUY_WIDTH && index === 14) {
         return false;
