@@ -110,6 +110,14 @@ const App = () => {
   const [rowData, setRowData] = useState([]);
   const [colDefs, setColDefs] = useState(columnDefinitions);
 
+  const defaultColDef = {
+    flex: 1,
+    wrapText: true,
+    autoHeight: true,
+    wrapHeaderText: true,
+    autoHeaderHeight: true
+  };
+
   const onGridReady = useCallback((params) => {
     if (windowWidth.current <= MIN_BUY_WIDTH) {
       params.api.setColumnsVisible([columnIds[14]], false);
@@ -228,14 +236,6 @@ const App = () => {
 
     setChecked(updatedChecked);
   }; 
-
-  const defaultColDef = {
-    flex: 1,
-    wrapText: true,
-    autoHeight: true,
-    wrapHeaderText: true,
-    autoHeaderHeight: true
-  };
 
   const handleSelect = (country) => {
     selectedCountry = country;
