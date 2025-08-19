@@ -9,7 +9,7 @@ import useWindowResizeThreshold from "./components/UseWindowResizeThreshold";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-let selectedCountry = "";
+let selectedCountry = "US";
 
 const MIN_BUY_WIDTH = 1344;
 const MIN_RENT_WIDTH = 1207;
@@ -42,78 +42,73 @@ const App = () => {
   // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState([]);
-  const [colDefs, setColDefs] = useState([
-    { field: "Pos", headerName: "2025", maxWidth: 80, colId: "2025", filter: true },
-    { field: "2024", maxWidth: 80, filter: true },
-    { field: "2023", maxWidth: 80, filter: true, initialHide: true },
-    { field: "Title",
-      filter: true,
-      maxWidth: 130,
-      cellRenderer: (params) => {
-        if (params.data.Providers.results.US) {
-          return <a href= {params.data.Providers.results.US.link} target="_blank" rel="noopener"> {params.value} </a>
+  const columnDefinitions = () => {
+    return [
+      { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
+      { field: "2024", maxWidth: 80, filter: true },
+      { field: "2023", maxWidth: 80, filter: true, initialHide: true },
+      { field: "Title", maxWidth: 130, filter: true, cellRenderer: (params) => {
+        if (params["data"]["Providers"]["results"][selectedCountry]) {
+          return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
         } else {
           return params.value;
-        }        
-      }
-    },
-    { field: "Director",
-      maxWidth: 130,
-      filter: true,
-      filterParams: directorFilterParams
-    },
-    { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true },
-    { field: "Year", maxWidth: 74, filter: true, initialHide: true },
-    { field: "Country", maxWidth: 98, filter: true },
-    { field: "Length", headerName: "Mins", colId: "Mins", maxWidth: 91, filter: true },
-    { field: "Genre", filter: true, initialHide: true },
-    { field: "Colour", maxWidth: 90, filter: true, initialHide: true },
-    { field: "Media Type", filter: true, initialHide: true },
-    { headerName: "Free",
-      colId: "Free",
-      filter: true,
-      valueGetter: function (params) {
-        const country = "US";
-        if (params["data"]["Providers"]["results"][country]) {
-          const providerData = params["data"]["Providers"]["results"][country]["free"];
-          return retrieveProviders(providerData);
         }
-      }
-    },
-    { headerName: "Flat Rate (Subscription)",
-      colId: "Flat Rate (Subscription)",
-      filter: true,
-      valueGetter: function (params) {
-        const country = "US";
-        if (params["data"]["Providers"]["results"][country]) {
-          const providerData = params["data"]["Providers"]["results"][country]["flatrate"];
-          return retrieveProviders(providerData);
+        
+      } },
+      { field: "Director",
+        maxWidth: 130,
+        filter: true,
+        filterParams: directorFilterParams},
+      { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true},
+      { field: "Year", maxWidth: 74, filter: true, initialHide: true },
+      { field: "Country", maxWidth: 98, filter: true},
+      { field: "Length", headerName: "Mins", colId: "Mins", maxWidth: 91, filter: true},
+      { field: "Genre", filter: true, initialHide: true },
+      { field: "Colour", maxWidth: 90, filter: true, initialHide: true },
+      { field: "Media Type", filter: true},
+      { headerName: "Free",
+        colId: "Free",
+        filter: true,
+        valueGetter: function (params) {
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
+            return retrieveProviders(providerData);
+          }
         }
-      }
-    },
-    { headerName: "Buy",
-      colId: "Buy",
-      filter: true,
-      valueGetter: function (params) {
-        const country = "US";
-        if (params["data"]["Providers"]["results"][country]) {
-          const providerData = params["data"]["Providers"]["results"][country]["buy"];
-          return retrieveProviders(providerData);
+      },
+      { headerName: "Flat Rate (Subscription)",
+        colId: "Flat Rate (Subscription)",
+        filter: true,
+        valueGetter: function (params) {
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
+            return retrieveProviders(providerData);
+          }
         }
-      }
-    },
-    { headerName: "Rent",
-      colId: "Rent",
-      filter: true,
-      valueGetter: function (params) {
-        const country = "US";
-        if (params["data"]["Providers"]["results"][country]) {
-          const providerData = params["data"]["Providers"]["results"][country]["rent"];
-          return retrieveProviders(providerData);
+      },
+      { headerName: "Buy",
+        colId: "Buy",
+        filter: true,
+        valueGetter: function (params) {
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
+            return retrieveProviders(providerData);
+          }
         }
-      }
-    }
-  ]);
+      },
+      { headerName: "Rent",
+        colId: "Rent",
+        filter: true,
+        valueGetter: function (params) {
+          if (params["data"]["Providers"]["results"][selectedCountry]) {
+            const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
+            return retrieveProviders(providerData);
+          }
+        }
+      },
+    ];
+  };
+  const [colDefs, setColDefs] = useState(columnDefinitions);
 
   function retrieveProviders(providerData) {
     if (providerData) {
@@ -211,74 +206,7 @@ const App = () => {
     });
 
     setChecked(updatedChecked);
-  };  
-
-  const updateProviderCols = () => {
-    return [
-      { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
-      { field: "2024", maxWidth: 80, filter: true },
-      { field: "2023", maxWidth: 80, filter: true },
-      { field: "Title", maxWidth: 130, filter: true, cellRenderer: (params) => {
-        if (params["data"]["Providers"]["results"][selectedCountry]) {
-          return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
-        } else {
-          return params.value;
-        }
-        
-      } },
-      { field: "Director",
-        maxWidth: 130,
-        filter: true,
-        filterParams: directorFilterParams},
-      { field: "Release Date", maxWidth: 128, minWidth: 63, filter: true},
-      { field: "Year", maxWidth: 74, filter: true},
-      { field: "Country", maxWidth: 98, filter: true},
-      { field: "Length", headerName: "Mins", colId: "Mins", maxWidth: 91, filter: true},
-      { field: "Genre", filter: true},
-      { field: "Colour", maxWidth: 90, filter: true},
-      { field: "Media Type", filter: true},
-      { headerName: "Free",
-        colId: "Free",
-        filter: true,
-        valueGetter: function (params) {
-          if (params["data"]["Providers"]["results"][selectedCountry]) {
-            const providerData = params["data"]["Providers"]["results"][selectedCountry]["free"];
-            return retrieveProviders(providerData);
-          }
-        }
-      },
-      { headerName: "Flat Rate (Subscription)",
-        colId: "Flat Rate (Subscription)",
-        filter: true,
-        valueGetter: function (params) {
-          if (params["data"]["Providers"]["results"][selectedCountry]) {
-            const providerData = params["data"]["Providers"]["results"][selectedCountry]["flatrate"];
-            return retrieveProviders(providerData);
-          }
-        }
-      },
-      { headerName: "Buy",
-        colId: "Buy",
-        filter: true,
-        valueGetter: function (params) {
-          if (params["data"]["Providers"]["results"][selectedCountry]) {
-            const providerData = params["data"]["Providers"]["results"][selectedCountry]["buy"];
-            return retrieveProviders(providerData);
-          }
-        }
-      },
-      { headerName: "Rent",
-        colId: "Rent",
-        filter: true,
-        valueGetter: function (params) {
-          if (params["data"]["Providers"]["results"][selectedCountry]) {
-            const providerData = params["data"]["Providers"]["results"][selectedCountry]["rent"];
-            return retrieveProviders(providerData);
-          }
-        }
-      },
-    ];
-  };
+  }; 
 
   const defaultColDef = {
     flex: 1,
@@ -290,7 +218,7 @@ const App = () => {
 
   const handleSelect = (country) => {
     selectedCountry = country;
-    setColDefs(updateProviderCols);
+    setColDefs(columnDefinitions);
   }
 
   const onGridReady = useCallback((params) => {
