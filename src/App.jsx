@@ -270,30 +270,32 @@ const App = () => {
     true
   ]);
 
-  const initialChecked = checked.map((item, index) => {
-    if (windowWidth.current <= MIN_BUY_WIDTH && index === 14) {
-      return false;
-    }
-    if (windowWidth.current <= MIN_RENT_WIDTH && index === 15) {
-      return false;
-    }
-    if (windowWidth.current <= MIN_COUNTRY_WIDTH && index === 7) {
-      return false;
-    }
-    if (windowWidth.current <= MIN_2024_WIDTH && index === 1) {
-      return false;
-    }
-    if (windowWidth.current <= MIN_DIRECTOR_WIDTH && index === 4) {
-      return false;
-    }
-    if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH && index === 5) {
-      return false;
-    }
-    else {
-      return item;
-    }
-  });
-  useEffect(() => {setChecked(initialChecked);}, []);
+  useEffect(() => {
+    const initialChecked = checked.map((item, index) => {
+      if (windowWidth.current <= MIN_BUY_WIDTH && index === 14) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_RENT_WIDTH && index === 15) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_COUNTRY_WIDTH && index === 7) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_2024_WIDTH && index === 1) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_DIRECTOR_WIDTH && index === 4) {
+        return false;
+      }
+      if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH && index === 5) {
+        return false;
+      }
+      else {
+        return item;
+      }
+    });
+    setChecked(initialChecked);
+  }, []);
   
   const onGridReady = useCallback((params) => {
     if (windowWidth.current <= MIN_BUY_WIDTH) {
@@ -436,7 +438,7 @@ const App = () => {
           return (
             <label htmlFor={`checkbox-${index}`}>
               <input
-                key= {columnId[index]}
+                key= {columnId}
                 type="checkbox"
                 id={`checkbox-${index}`}
                 checked={checked[index]}
