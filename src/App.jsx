@@ -110,6 +110,27 @@ const App = () => {
   const [rowData, setRowData] = useState([]);
   const [colDefs, setColDefs] = useState(columnDefinitions);
 
+  const onGridReady = useCallback((params) => {
+    if (windowWidth.current <= MIN_BUY_WIDTH) {
+      params.api.setColumnsVisible([columnIds[14]], false);
+    }
+    if (windowWidth.current <= MIN_RENT_WIDTH) {
+      params.api.setColumnsVisible([columnIds[15]], false);
+    }
+    if (windowWidth.current <= MIN_COUNTRY_WIDTH) {
+      params.api.setColumnsVisible([columnIds[7]], false);
+    }
+    if (windowWidth.current <= MIN_2024_WIDTH) {
+      params.api.setColumnsVisible([columnIds[1]], false);
+    }
+    if (windowWidth.current <= MIN_DIRECTOR_WIDTH) {
+      params.api.setColumnsVisible([columnIds[4]], false);
+    }
+    if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH) {
+      params.api.setColumnsVisible([columnIds[5]], false);
+    }
+  }, []);
+
   function retrieveProviders(providerData) {
     if (providerData) {
       let result = "";
@@ -220,27 +241,6 @@ const App = () => {
     selectedCountry = country;
     setColDefs(columnDefinitions);
   }
-
-  const onGridReady = useCallback((params) => {
-    if (windowWidth.current <= MIN_BUY_WIDTH) {
-      params.api.setColumnsVisible([columnIds[14]], false);
-    }
-    if (windowWidth.current <= MIN_RENT_WIDTH) {
-      params.api.setColumnsVisible([columnIds[15]], false);
-    }
-    if (windowWidth.current <= MIN_COUNTRY_WIDTH) {
-      params.api.setColumnsVisible([columnIds[7]], false);
-    }
-    if (windowWidth.current <= MIN_2024_WIDTH) {
-      params.api.setColumnsVisible([columnIds[1]], false);
-    }
-    if (windowWidth.current <= MIN_DIRECTOR_WIDTH) {
-      params.api.setColumnsVisible([columnIds[4]], false);
-    }
-    if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH) {
-      params.api.setColumnsVisible([columnIds[5]], false);
-    }
-  }, []);
 
   const buyThreshold = useWindowResizeThreshold(MIN_BUY_WIDTH);
 
