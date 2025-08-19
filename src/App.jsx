@@ -41,7 +41,6 @@ const App = () => {
   const windowWidth = useRef(window.innerWidth);
   // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
-  const [rowData, setRowData] = useState([]);
   const columnDefinitions = () => {
     return [
       { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
@@ -108,6 +107,7 @@ const App = () => {
       },
     ];
   };
+  const [rowData, setRowData] = useState([]);
   const [colDefs, setColDefs] = useState(columnDefinitions);
 
   function retrieveProviders(providerData) {
