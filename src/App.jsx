@@ -360,9 +360,8 @@ const App = () => {
       <div className="checkboxes">
         {columnIds.map((columnId, index) => {
           return (
-            <label htmlFor={`checkbox-${index}`}>
+            <label htmlFor={`checkbox-${index}`} key= {columnId}>
               <input
-                key= {columnId}
                 type="checkbox"
                 id={`checkbox-${index}`}
                 checked={checked[index]}
