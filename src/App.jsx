@@ -6,17 +6,11 @@ import SelectCountry from "./components/SelectCountry";
 import { Link } from "react-router";
 import Checkbox from "./components/Checkbox";
 import useWindowResizeThreshold from "./components/UseWindowResizeThreshold";
+import * as Constants from "/utils/Constants";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 let selectedCountry = "US";
-
-const MIN_BUY_WIDTH = 1344;
-const MIN_RENT_WIDTH = 1207;
-const MIN_COUNTRY_WIDTH = 1075;
-const MIN_2024_WIDTH = 837;
-const MIN_DIRECTOR_WIDTH = 740;
-const MIN_RELEASE_DATE_WIDTH = 635;
 
 const directorFilterParams = {
   textFormatter: (r) => {
@@ -119,23 +113,23 @@ const App = () => {
   };
 
   const onGridReady = useCallback((params) => {
-    if (windowWidth.current <= MIN_BUY_WIDTH) {
-      params.api.setColumnsVisible([columnIds[14]], false);
+    if (windowWidth.current <= Constants.MIN_BUY_WIDTH) {
+      params.api.setColumnsVisible([Constants.COLUMN_IDS[14]], false);
     }
-    if (windowWidth.current <= MIN_RENT_WIDTH) {
-      params.api.setColumnsVisible([columnIds[15]], false);
+    if (windowWidth.current <= Constants.MIN_RENT_WIDTH) {
+      params.api.setColumnsVisible([Constants.COLUMN_IDS[15]], false);
     }
-    if (windowWidth.current <= MIN_COUNTRY_WIDTH) {
-      params.api.setColumnsVisible([columnIds[7]], false);
+    if (windowWidth.current <= Constants.MIN_COUNTRY_WIDTH) {
+      params.api.setColumnsVisible([Constants.COLUMN_IDS[7]], false);
     }
-    if (windowWidth.current <= MIN_2024_WIDTH) {
-      params.api.setColumnsVisible([columnIds[1]], false);
+    if (windowWidth.current <= Constants.MIN_2024_WIDTH) {
+      params.api.setColumnsVisible([Constants.COLUMN_IDS[1]], false);
     }
-    if (windowWidth.current <= MIN_DIRECTOR_WIDTH) {
-      params.api.setColumnsVisible([columnIds[4]], false);
+    if (windowWidth.current <= Constants.MIN_DIRECTOR_WIDTH) {
+      params.api.setColumnsVisible([Constants.COLUMN_IDS[4]], false);
     }
-    if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH) {
-      params.api.setColumnsVisible([columnIds[5]], false);
+    if (windowWidth.current <= Constants.MIN_RELEASE_DATE_WIDTH) {
+      params.api.setColumnsVisible([Constants.COLUMN_IDS[5]], false);
     }
   }, []);
 
@@ -148,25 +142,6 @@ const App = () => {
       return result.slice(0, result.length - 2);
     }
   };
-
-  const columnIds = [
-    "2025",
-    "2024",
-    "2023",
-    "Title",
-    "Director",
-    "Release Date",
-    "Year",
-    "Country",
-    "Mins",
-    "Genre",
-    "Colour",
-    "Media Type",
-    "Free",
-    "Flat Rate (Subscription)",
-    "Buy",
-    "Rent"
-  ];
 
   const [checked, setChecked] = useState([
     true,
@@ -195,22 +170,22 @@ const App = () => {
 
   useEffect(() => {
     const initialChecked = checked.map((item, index) => {
-      if (windowWidth.current <= MIN_BUY_WIDTH && index === 14) {
+      if (windowWidth.current <= Constants.MIN_BUY_WIDTH && index === 14) {
         return false;
       }
-      if (windowWidth.current <= MIN_RENT_WIDTH && index === 15) {
+      if (windowWidth.current <= Constants.MIN_RENT_WIDTH && index === 15) {
         return false;
       }
-      if (windowWidth.current <= MIN_COUNTRY_WIDTH && index === 7) {
+      if (windowWidth.current <= Constants.MIN_COUNTRY_WIDTH && index === 7) {
         return false;
       }
-      if (windowWidth.current <= MIN_2024_WIDTH && index === 1) {
+      if (windowWidth.current <= Constants.MIN_2024_WIDTH && index === 1) {
         return false;
       }
-      if (windowWidth.current <= MIN_DIRECTOR_WIDTH && index === 4) {
+      if (windowWidth.current <= Constants.MIN_DIRECTOR_WIDTH && index === 4) {
         return false;
       }
-      if (windowWidth.current <= MIN_RELEASE_DATE_WIDTH && index === 5) {
+      if (windowWidth.current <= Constants.MIN_RELEASE_DATE_WIDTH && index === 5) {
         return false;
       }
       else {
@@ -224,9 +199,9 @@ const App = () => {
     const updatedChecked = checked.map((item, index) => {
       if (index === position) {
         if (item) {
-          gridRef.current.api.setColumnsVisible([columnIds[index]], false);
+          gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[index]], false);
         } else {
-          gridRef.current.api.setColumnsVisible([columnIds[index]], true);
+          gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[index]], true);
         }
         return !item;
       } else {
@@ -242,11 +217,11 @@ const App = () => {
     setColDefs(columnDefinitions);
   }
 
-  const buyThreshold = useWindowResizeThreshold(MIN_BUY_WIDTH);
+  const buyThreshold = useWindowResizeThreshold(Constants.MIN_BUY_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
-      gridRef.current.api.setColumnsVisible([columnIds[14]], false);
+      gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[14]], false);
       const updatedChecked = checked.map((item, index) => {
         if (index === 14) {
           return false
@@ -258,11 +233,11 @@ const App = () => {
     }
   }, [buyThreshold]);
 
-  const rentThreshold = useWindowResizeThreshold(MIN_RENT_WIDTH);
+  const rentThreshold = useWindowResizeThreshold(Constants.MIN_RENT_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
-      gridRef.current.api.setColumnsVisible([columnIds[15]], false);
+      gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[15]], false);
       const updatedChecked = checked.map((item, index) => {
         if (index === 15) {
           return false
@@ -274,11 +249,11 @@ const App = () => {
     }
   }, [rentThreshold]);
 
-  const countryThreshold = useWindowResizeThreshold(MIN_COUNTRY_WIDTH);
+  const countryThreshold = useWindowResizeThreshold(Constants.MIN_COUNTRY_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
-      gridRef.current.api.setColumnsVisible([columnIds[7]], false);
+      gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[7]], false);
       const updatedChecked = checked.map((item, index) => {
         if (index === 7) {
           return false
@@ -290,11 +265,11 @@ const App = () => {
     }
   }, [countryThreshold]);
 
-  const pos2024Threshold = useWindowResizeThreshold(MIN_2024_WIDTH);
+  const pos2024Threshold = useWindowResizeThreshold(Constants.MIN_2024_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
-      gridRef.current.api.setColumnsVisible([columnIds[1]], false);
+      gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[1]], false);
       const updatedChecked = checked.map((item, index) => {
         if (index === 1) {
           return false
@@ -306,11 +281,11 @@ const App = () => {
     }
   }, [pos2024Threshold]);
 
-  const directorThreshold = useWindowResizeThreshold(MIN_DIRECTOR_WIDTH);
+  const directorThreshold = useWindowResizeThreshold(Constants.MIN_DIRECTOR_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
-      gridRef.current.api.setColumnsVisible([columnIds[4]], false);
+      gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[4]], false);
       const updatedChecked = checked.map((item, index) => {
         if (index === 4) {
           return false
@@ -322,11 +297,11 @@ const App = () => {
     }
   }, [directorThreshold]);
 
-  const releaseDateThreshold = useWindowResizeThreshold(MIN_RELEASE_DATE_WIDTH);
+  const releaseDateThreshold = useWindowResizeThreshold(Constants.MIN_RELEASE_DATE_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
-      gridRef.current.api.setColumnsVisible([columnIds[5]], false);
+      gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[5]], false);
       const updatedChecked = checked.map((item, index) => {
         if (index === 5) {
           return false
@@ -358,7 +333,7 @@ const App = () => {
         <SelectCountry onSelect={handleSelect} />
       </div>
       <div className="checkboxes">
-        {columnIds.map((columnId, index) => {
+        {Constants.COLUMN_IDS.map((columnId, index) => {
           return (
             <label htmlFor={`checkbox-${index}`} key= {columnId}>
               <input
