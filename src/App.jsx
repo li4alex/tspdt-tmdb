@@ -220,7 +220,7 @@ const App = () => {
     setChecked(initialChecked);
   }, []);
   
-  const handleChange = (position) => {
+  const handleCheckbox = (position) => {
     const updatedChecked = checked.map((item, index) => {
       if (index === position) {
         if (item) {
@@ -365,7 +365,7 @@ const App = () => {
                 type="checkbox"
                 id={`checkbox-${index}`}
                 checked={checked[index]}
-                onChange={() => handleChange(index)}
+                onChange={() => handleCheckbox(index)}
               />
               {columnId}
             </label>
