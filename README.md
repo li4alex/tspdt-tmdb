@@ -1,3 +1,3 @@
 # TSPDT Streaming Provider Table
 
-Table using AG-Grid-React to display table of streaming providers of [TSPDT](https://www.theyshootpictures.com/gf1000_all1000films_table.php) movies by country. TSPDT table from their [Excel file](https://www.theyshootpictures.com/resources/1000GreatestFilms.xls). Streaming provider data from [The Movie Database's API](https://developer.themoviedb.org/docs/getting-started).
+Table using AG-Grid-React to display table of streaming providers of [TSPDT](https://www.theyshootpictures.com/gf1000_all1000films_table.php) movies by country. TSPDT data from their [Excel file](https://www.theyshootpictures.com/resources/1000GreatestFilms.xls). Streaming provider data from [The Movie Database's API](https://developer.themoviedb.org/docs/getting-started).
