@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-// import useWindowResizeThreshold from "/components/UseWindowResizeThreshold";
+import React, { useEffect } from "react";
 import * as Constants from "/utils/Constants";
 
 export default function Checkboxes({ windowWidth, checked, setChecked, handleCheckbox }) {
