@@ -4,7 +4,6 @@ import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./components/SelectCountry";
 import { Link } from "react-router";
-import Checkbox from "./components/Checkbox";
 import useWindowResizeThreshold from "./components/UseWindowResizeThreshold";
 import * as Constants from "/utils/Constants";
 import Checkboxes from "./components/Checkboxes";
