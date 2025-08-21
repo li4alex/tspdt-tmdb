@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import useWindowResizeThreshold from "./components/UseWindowResizeThreshold";
 import * as Constants from "/utils/Constants";
 import Checkboxes from "./components/Checkboxes";
+import useFetchJson from "/utils/UseFetchJson";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -31,10 +32,9 @@ const directorFilterParams = {
 };
 
 const App = () => {
+  const { data, loading } = useFetchJson("/tmdb_final.json");
   const gridRef = useRef(null);
   const windowWidth = useRef(window.innerWidth);
-  // const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
-  // const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const columnDefinitions = () => {
     return [
       { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
@@ -101,7 +101,7 @@ const App = () => {
       },
     ];
   };
-  const [rowData, setRowData] = useState([]);
+
   const [colDefs, setColDefs] = useState(columnDefinitions);
 
   const defaultColDef = {
@@ -161,12 +161,6 @@ const App = () => {
     true,
     true
   ]);
-
-  useEffect(() => {
-    fetch("./script/tmdb_final.json")
-    .then(result => result.json())
-    .then(rowData => setRowData(rowData));
-  }, []);
   
   const handleCheckbox = (position) => {
     const updatedChecked = checked.map((item, index) => {
@@ -316,7 +310,7 @@ const App = () => {
       <div className="grid-wrapper" style={{ width: "auto", height: "75lvh" }}>
         <AgGridReact
         ref={gridRef}
-        rowData={rowData}
+        rowData={data}
         columnDefs={colDefs}
         defaultColDef={defaultColDef}
         pagination={true}
