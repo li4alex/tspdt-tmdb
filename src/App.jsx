@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import Checkbox from "./components/Checkbox";
 import useWindowResizeThreshold from "./components/UseWindowResizeThreshold";
 import * as Constants from "/utils/Constants";
+import Checkboxes from "./components/Checkboxes";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -58,7 +59,7 @@ const App = () => {
       { field: "Length", headerName: "Mins", colId: "Mins", maxWidth: 91, filter: true},
       { field: "Genre", filter: true, initialHide: true },
       { field: "Colour", maxWidth: 90, filter: true, initialHide: true },
-      { field: "Media Type", filter: true},
+      { field: "Media Type", filter: true, initialHide: true },
       { headerName: "Free",
         colId: "Free",
         filter: true,
@@ -166,33 +167,6 @@ const App = () => {
     fetch("./script/tmdb_final.json")
     .then(result => result.json())
     .then(rowData => setRowData(rowData));
-  }, []);
-
-  useEffect(() => {
-    const initialChecked = checked.map((item, index) => {
-      if (windowWidth.current <= Constants.MIN_BUY_WIDTH && index === 14) {
-        return false;
-      }
-      if (windowWidth.current <= Constants.MIN_RENT_WIDTH && index === 15) {
-        return false;
-      }
-      if (windowWidth.current <= Constants.MIN_COUNTRY_WIDTH && index === 7) {
-        return false;
-      }
-      if (windowWidth.current <= Constants.MIN_2024_WIDTH && index === 1) {
-        return false;
-      }
-      if (windowWidth.current <= Constants.MIN_DIRECTOR_WIDTH && index === 4) {
-        return false;
-      }
-      if (windowWidth.current <= Constants.MIN_RELEASE_DATE_WIDTH && index === 5) {
-        return false;
-      }
-      else {
-        return item;
-      }
-    });
-    setChecked(initialChecked);
   }, []);
   
   const handleCheckbox = (position) => {
@@ -333,19 +307,12 @@ const App = () => {
         <SelectCountry onSelect={handleSelect} />
       </div>
       <div className="checkboxes">
-        {Constants.COLUMN_IDS.map((columnId, index) => {
-          return (
-            <label htmlFor={`checkbox-${index}`} key= {columnId}>
-              <input
-                type="checkbox"
-                id={`checkbox-${index}`}
-                checked={checked[index]}
-                onChange={() => handleCheckbox(index)}
-              />
-              {columnId}
-            </label>
-          );
-        })}
+        <Checkboxes
+          windowWidth={windowWidth}
+          checked={checked}
+          setChecked={setChecked}
+          handleCheckbox={handleCheckbox}
+        />
       </div>
       <div className="grid-wrapper" style={{ width: "auto", height: "75lvh" }}>
         <AgGridReact
