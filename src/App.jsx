@@ -31,7 +31,7 @@ const directorFilterParams = {
 };
 
 const App = () => {
-  const { data, loading } = useFetchJson("/tmdb_final.json");
+  const { data, loading } = useFetchJson("/tmdb_2025-08-24.json");
   const gridRef = useRef(null);
   const windowWidth = useRef(window.innerWidth);
   const columnDefinitions = () => {
