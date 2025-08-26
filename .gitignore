@@ -23,7 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Test files
-tmdb_final_10_us.json
-tmdb_final_10.json
-tmdb_final.json
+# Env
+.env

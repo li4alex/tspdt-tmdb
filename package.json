@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "ag-grid-community": "^33.3.2",
     "ag-grid-react": "^33.3.2",
     "emailjs": "^4.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-flags-select": "^2.5.0",
+    "react-hook-form": "^7.62.0",
     "wouter": "^3.7.1"
   },
   "devDependencies": {
