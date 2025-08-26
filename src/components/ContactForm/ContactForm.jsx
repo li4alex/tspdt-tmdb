@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from '@emailjs/browser';
 import "./ContactForm.css";
+import { Link } from "wouter";
 
 const ContactForm = () => {
   const {
@@ -195,6 +196,11 @@ const ContactForm = () => {
           ></button>
         </div>
       )}
+      <div>
+      <Link href="/">
+          <h3>Table</h3>
+        </Link>
+      </div>
     </div>
   );
 };
