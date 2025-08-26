@@ -7,6 +7,7 @@ import useWindowResizeThreshold from "./UseWindowResizeThreshold";
 import * as Constants from "/utils/Constants";
 import Checkboxes from "./Checkboxes";
 import useFetchJson from "/utils/UseFetchJson";
+import { Link } from "wouter";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -315,6 +316,11 @@ const TablePage = () => {
         pagination={true}
         onGridReady={onGridReady}
         />
+      </div>
+      <div>              
+        <Link href="/contact">
+          <h3>Contact</h3>
+        </Link>
       </div>
     </div>
   );
