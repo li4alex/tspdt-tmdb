@@ -1,22 +1,21 @@
 'use client';
 import React from "react";
-import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { Link, Route, Switch } from "wouter";
 import TablePage from "/src/components/TablePage";
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import Contact from "/src/components/Contact";
 
 const App = () => (
   <div>
-    {/* <Switch>
+    <Switch>
       <Route path="/" component={TablePage} />
+      <Route path="/contact" component={Contact} />
       <Route>404: No such page!</Route>
     </Switch>
       
     <Link href="/contact">
       <a className="link">Contact</a>
-    </Link> */}
-    <TablePage />
+    </Link>
+    {/* <TablePage /> */}
   </div>
 );
 
