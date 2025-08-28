@@ -10,12 +10,14 @@ body {
 }
 
 .ContactForm {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  display: grid;
+  place-items: center;
 }
 
 .container {
-  max-width: 80rem;
+  min-width: 35rem;
 }
 
 form {
@@ -37,11 +39,6 @@ textarea {
   width: 100%;
   box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif, system-ui;
-}
-
-.row1 {
-  display: flex;
-  gap: 1em;
 }
 
 .formInput {
@@ -68,8 +65,7 @@ textarea {
     width: 125px;
     margin-left: 200px;
   }
-
-  .row1 {
-    display: block;
+  .container {
+    max-width: 700px;
   }
 }

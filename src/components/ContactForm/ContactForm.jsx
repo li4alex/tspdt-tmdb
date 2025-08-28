@@ -78,8 +78,8 @@ const ContactForm = () => {
                 noValidate
               >
                 {/* Row 1 of form */}
-                <div className='row formRow row1'>
-                  <div className='col-6'>
+                <div className='row formRow'>
+                  <div className='col'>
                     <input
                       type='text'
                       name='name'
@@ -102,26 +102,29 @@ const ContactForm = () => {
                       </span>
                     )}
                   </div>
-                  <div className='col-6'>
-                    <input
-                      type='email'
-                      name='email'
-                      {...register('email', {
-                        required: true,
-                        pattern:
-                          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                      })}
-                      className='form-control formInput'
-                      placeholder='Email address'
-                    ></input>
-                    {errors.email && (
-                      <span className='errorMessage'>
-                        Please enter a valid email address
-                      </span>
-                    )}
-                  </div>
                 </div>
                 {/* Row 2 of form */}
+                <div className='row formRow'>
+                  <div className='col'>
+                      <input
+                        type='email'
+                        name='email'
+                        {...register('email', {
+                          required: true,
+                          pattern:
+                            /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                        })}
+                        className='form-control formInput'
+                        placeholder='Email address'
+                      ></input>
+                      {errors.email && (
+                        <span className='errorMessage'>
+                          Please enter a valid email address
+                        </span>
+                      )}
+                    </div>
+                </div>
+                {/* Row 3 of form */}
                 <div className='row formRow'>
                   <div className='col'>
                     <input
@@ -147,7 +150,7 @@ const ContactForm = () => {
                     )}
                   </div>
                 </div>
-                {/* Row 3 of form */}
+                {/* Row 4 of form */}
                 <div className='row formRow'>
                   <div className='col'>
                     <textarea
