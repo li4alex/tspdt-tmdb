@@ -9,12 +9,39 @@ body {
   margin-top: 15vh;
 }
 
+.ContactForm {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 80rem;
+}
+
 form {
   margin-top: 20px;
 }
 
 .formRow {
   margin: 10px 0 20px 0;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Avenir, Helvetica, Arial, sans-serif, system-ui;
+  font-size: 1em;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Avenir, Helvetica, Arial, sans-serif, system-ui;
+}
+
+.row1 {
+  display: flex;
+  gap: 2em;
 }
 
 .formInput {
@@ -29,14 +56,20 @@ form {
 }
 
 .submit-btn {
+  box-sizing: border-box;
   padding: 15px 50px;
   border-radius: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
   .submit-message {
     width: 125px;
     margin-left: 200px;
+  }
+
+  .row1 {
+    display: block;
   }
 }

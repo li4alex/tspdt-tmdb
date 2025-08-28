@@ -78,7 +78,7 @@ const ContactForm = () => {
                 noValidate
               >
                 {/* Row 1 of form */}
-                <div className='row formRow'>
+                <div className='row formRow row1'>
                   <div className='col-6'>
                     <input
                       type='text'
@@ -178,6 +178,11 @@ const ContactForm = () => {
             </div>
           </div>
         </div>
+        <div>
+          <Link href="/">
+            <h3>Back to Table</h3>
+          </Link>
+        </div>
       </div>
       {alertInfo.display && (
         <div
@@ -196,11 +201,6 @@ const ContactForm = () => {
           ></button>
         </div>
       )}
-      <div>
-      <Link href="/">
-          <h3>Table</h3>
-        </Link>
-      </div>
     </div>
   );
 };
