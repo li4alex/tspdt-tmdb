@@ -6,12 +6,12 @@ import ContactForm from "/src/components/ContactForm/ContactForm";
 
 const App = () => (
   <div>
-    <Switch>
+    {/* <Switch>
       <Route path="/" component={TablePage} />
       <Route path="/contact" component={ContactForm} />
       <Route>404: No such page!</Route>
-    </Switch>
-    {/* <TablePage /> */}
+    </Switch> */}
+    <TablePage />
   </div>
 );
 
