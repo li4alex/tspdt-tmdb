@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/tspdt-tmdb/",
+  base: "https://li4alex.github.io/tspdt-tmdb/",
   plugins: [react()],
 })
