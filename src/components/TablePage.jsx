@@ -299,7 +299,7 @@ const TablePage = () => {
       <div>
         <SelectCountry onSelect={handleSelect} />
       </div>
-      <div className="checkboxes">
+      <div className="checkboxes" style={{ display: "flex" }}>
         <Checkboxes
           windowWidth={windowWidth}
           checked={checked}
