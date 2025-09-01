@@ -31,5 +31,8 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "vite": "^6.3.5"
+  },
+  "properties": {
+    "homepage": "http://li4alex.github.io/tspdt-tmdb"
   }
 }
