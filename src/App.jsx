@@ -11,7 +11,10 @@ const App = () => (
       <Route path="/contact" component={ContactForm} />
       <Route>404: No such page!</Route>
     </Switch> */}
-    <TablePage />
+    {/* <TablePage /> */}
+    <div>
+      <h1>Test</h1>
+    </div>
   </div>
 );
 
