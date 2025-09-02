@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
@@ -18,6 +18,7 @@ const ContactForm = () => {
     message: '',
     type: '',
   });
+  const refCaptcha = useRef();
 
   // Shows alert message for form submission feedback
   const toggleAlert = (message, type) => {
@@ -33,7 +34,6 @@ const ContactForm = () => {
   const onSubmit = async (data) => {
     // Destrcture data object
     const { name, email, subject, message } = data;
-    const refCaptcha = createRef();
     const token = refCaptcha.current.getValue();
     try {
       // Disable form while processing submission
@@ -57,7 +57,7 @@ const ContactForm = () => {
       )
       .then(
         (result) => {
-          recaptchaRef.current.reset();
+          refCaptcha.current.reset();
         },
         (error) => {
           console.log(error.text);
@@ -80,7 +80,7 @@ const ContactForm = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    recaptchaRef.current.execute();
+    refCaptcha.current.execute();
   };
 
   return (
@@ -188,7 +188,7 @@ const ContactForm = () => {
                 </div>
                 <ReCAPTCHA
                     ref={refCaptcha}
-                    sitekey={meta.env.VITE_RECAPTCHA_SITE_KEY}
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                     size="invisible"
                     onChange={handleSubmit(onSubmit)}
                 />
