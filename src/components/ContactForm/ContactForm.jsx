@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from '@emailjs/browser';
+import ReCAPTCHA from "react-google-recaptcha";
 import "./ContactForm.css";
 import { Link } from "wouter";
 
@@ -32,6 +33,8 @@ const ContactForm = () => {
   const onSubmit = async (data) => {
     // Destrcture data object
     const { name, email, subject, message } = data;
+    const refCaptcha = createRef();
+    const token = refCaptcha.current.getValue();
     try {
       // Disable form while processing submission
       setDisabled(true);
@@ -42,6 +45,7 @@ const ContactForm = () => {
         email,
         subject,
         message,
+        "g-recaptcha-response": token,
       };
 
       // Use emailjs to email contact form data
@@ -50,6 +54,14 @@ const ContactForm = () => {
         import.meta.env.VITE_TEMPLATE_ID,
         templateParams,
         import.meta.env.VITE_PUBLIC_KEY,
+      )
+      .then(
+        (result) => {
+          recaptchaRef.current.reset();
+        },
+        (error) => {
+          console.log(error.text);
+        }
       );
 
       // Display success alert
@@ -66,6 +78,11 @@ const ContactForm = () => {
     }
   };
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+    recaptchaRef.current.execute();
+  };
+
   return (
     <div className='ContactForm'>
       <div className='container'>
@@ -74,7 +91,7 @@ const ContactForm = () => {
             <div className='contactForm'>
               <form
                 id='contact-form'
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={sendEmail}
                 noValidate
               >
                 {/* Row 1 of form */}
@@ -169,7 +186,12 @@ const ContactForm = () => {
                     )}
                   </div>
                 </div>
-
+                <ReCAPTCHA
+                    ref={refCaptcha}
+                    sitekey={meta.env.VITE_RECAPTCHA_SITE_KEY}
+                    size="invisible"
+                    onChange={handleSubmit(onSubmit)}
+                />
                 <button
                   className='submit-btn btn btn-primary'
                   disabled={disabled}
