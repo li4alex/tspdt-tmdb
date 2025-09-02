@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, createRef } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
@@ -18,7 +18,7 @@ const ContactForm = () => {
     message: '',
     type: '',
   });
-  const refCaptcha = useRef();
+  const refCaptcha = createRef();
 
   // Shows alert message for form submission feedback
   const toggleAlert = (message, type) => {
@@ -199,13 +199,6 @@ const ContactForm = () => {
                 >
                   Submit
                 </button>
-                <div>
-                  <p>
-                    This site is protected by reCAPTCHA and the Google
-                     <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
-                    <a href="https://policies.google.com/terms"> Terms of Service</a> apply.
-                  </p>
-                </div>
               </form>
             </div>
           </div>
