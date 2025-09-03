@@ -4,6 +4,7 @@ export const MIN_COUNTRY_WIDTH = 1075;
 export const MIN_2024_WIDTH = 837;
 export const MIN_DIRECTOR_WIDTH = 740;
 export const MIN_RELEASE_DATE_WIDTH = 635;
+export const MIN_FREE_WIDTH = 450;
 export const COLUMN_IDS = [
   "2025",
   "2024",

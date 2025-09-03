@@ -32,7 +32,7 @@ const directorFilterParams = {
 };
 
 const TablePage = () => {
-  const { data, loading } = useFetchJson("/tmdb_2025-08-24.json");
+  const { data, loading } = useFetchJson("/tmdb_2025-09-02.json");
   const gridRef = useRef(null);
   const windowWidth = useRef(window.innerWidth);
   const columnDefinitions = () => {
@@ -130,6 +130,9 @@ const TablePage = () => {
     }
     if (windowWidth.current <= Constants.MIN_RELEASE_DATE_WIDTH) {
       params.api.setColumnsVisible([Constants.COLUMN_IDS[5]], false);
+    }
+    if (windowWidth.current <= Constants.MIN_FREE_WIDTH) {
+      params.api.setColumnsVisible([Constants.COLUMN_IDS[12]], false);
     }
   }, []);
 
@@ -279,6 +282,23 @@ const TablePage = () => {
       setChecked(updatedChecked); 
     }
   }, [releaseDateThreshold]);
+
+  const freeThreshold = useWindowResizeThreshold(Constants.MIN_FREE_WIDTH);
+
+  useEffect(() => {
+    if (gridRef.current.api) {
+      gridRef.current.api.setColumnsVisible([Constants.COLUMN_IDS[12]], false);
+      const updatedChecked = checked.map((item, index) => {
+        if (index === 12) {
+          return false
+        } else {
+          return item;
+        }
+      });
+      setChecked(updatedChecked); 
+    }
+  }, [freeThreshold]);
+
 
   return (
     <div>
