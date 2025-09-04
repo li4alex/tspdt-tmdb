@@ -73,3 +73,8 @@ button:focus-visible {
   padding-top: calc(var(--reduceLineHeightBy) / 2);
   padding-bottom: calc(var(--reduceLineHeightBy) / 2);
 }
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
