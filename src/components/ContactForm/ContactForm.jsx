@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
@@ -18,7 +18,7 @@ const ContactForm = () => {
     message: '',
     type: '',
   });
-  const refCaptcha = createRef();
+  const refCaptcha = useRef();
 
   // Shows alert message for form submission feedback
   const toggleAlert = (message, type) => {
