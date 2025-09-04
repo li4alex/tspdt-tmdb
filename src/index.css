@@ -78,3 +78,8 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
 }
+
+.grid-wrapper {
+  width: auto;
+  height: 75lvh;
+}

@@ -327,7 +327,7 @@ const TablePage = () => {
           handleCheckbox={handleCheckbox}
         />
       </div>
-      <div className="grid-wrapper" style={{ width: "auto", height: "75lvh" }}>
+      <div className="grid-wrapper">
         <AgGridReact
         ref={gridRef}
         rowData={data}
