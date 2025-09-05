@@ -83,3 +83,10 @@ button:focus-visible {
   width: auto;
   height: 75lvh;
 }
+
+fieldset {
+  border: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}

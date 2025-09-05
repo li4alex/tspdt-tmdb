@@ -32,15 +32,19 @@ export default function Checkboxes({ windowWidth, checked, setChecked, handleChe
   return (
     Constants.COLUMN_IDS.map((columnId, index) => {
       return (
-        <label htmlFor={`checkbox-${index}`} key= {columnId}>
-          <input
-            type="checkbox"
-            id={`checkbox-${index}`}
-            checked={checked[index]}
-            onChange={() => handleCheckbox(index)}
-          />
-          {columnId}
-        </label>
+        <div>
+          <div>
+            <input
+                type="checkbox"
+                id={`checkbox-${index}`}
+                checked={checked[index]}
+                onChange={() => handleCheckbox(index)}
+              />
+          </div>
+          <div>
+            <label htmlFor={`checkbox-${index}`} key= {columnId}>{columnId}</label>
+          </div>
+        </div>
       );
     })
   )

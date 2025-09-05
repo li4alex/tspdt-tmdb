@@ -319,14 +319,14 @@ const TablePage = () => {
       <div>
         <SelectCountry onSelect={handleSelect} />
       </div>
-      <div className="checkboxes">
+      <fieldset>
         <Checkboxes
           windowWidth={windowWidth}
           checked={checked}
           setChecked={setChecked}
           handleCheckbox={handleCheckbox}
         />
-      </div>
+      </fieldset>
       <div className="grid-wrapper">
         <AgGridReact
         ref={gridRef}
