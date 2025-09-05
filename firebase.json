@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "tspdt-table",
     "public": "dist",
     "ignore": [],
     "rewrites": [
