@@ -32,7 +32,7 @@ const directorFilterParams = {
 };
 
 const TablePage = () => {
-  const { data, loading } = useFetchJson("/tmdb_2025-09-05.json");
+  const { data, loading } = useFetchJson("/tmdb_2025-09-08.json");
   const gridRef = useRef(null);
   const windowWidth = useRef(window.innerWidth);
   const columnDefinitions = () => {
