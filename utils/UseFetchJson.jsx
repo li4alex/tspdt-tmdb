@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useFetchJso(url, limit) {
+export default function useFetchJson(url, limit) {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
