@@ -1,7 +1,15 @@
 name: Daily Python script run to replace table json
 on:
-  schedule:
-    - cron: "23 03 * * *"
+  workflow_dispatch:
+  inputs:
+    logLevel:
+      description: 'Log level'     
+      required: true
+      default: 'warning'
+    tags:
+      description: 'Test scenario tags'  
+  # schedule:
+  #   - cron: "23 03 * * *"
 env:
   TMDB_KEY: ${{ secrets.TMDB_KEY }}
 
