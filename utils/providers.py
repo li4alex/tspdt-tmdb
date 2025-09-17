@@ -14,7 +14,7 @@ headers = {
   "Authorization": tmdb_key
 }
 
-with open("./public/movie_data_with_ids.json", mode="r", encoding="utf-8") as read_file:
+with open("movie_data_with_ids.json", mode="r", encoding="utf-8") as read_file:
   tmdb_data = json.load(read_file)
 
 for movieEntry in tmdb_data:
@@ -25,5 +25,5 @@ for movieEntry in tmdb_data:
     providers = requests.get(tvProvidersUrlFront + str(movieId) + providersUrlBack, headers=headers)
   movieEntry["Providers"] = providers.json()
 
-with open("./public/table.json", "w", encoding="utf-8") as f:
+with open("table.json", "w", encoding="utf-8") as f:
   json.dump(tmdb_data, f, ensure_ascii=False, indent=2)
