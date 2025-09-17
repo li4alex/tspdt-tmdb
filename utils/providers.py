@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-tmdb_key = os.getenv("TMDB_KEY")
+# tmdb_key = os.getenv("TMDB_KEY")
+tmdb_key = os.environ["TMDB_KEY"]
 
 movieProvidersUrlFront = "https://api.themoviedb.org/3/movie/"
 tvProvidersUrlFront = "https://api.themoviedb.org/3/tv/"
