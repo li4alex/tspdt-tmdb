@@ -34,6 +34,7 @@ jobs:
           git config user.email github-actions
           git config user.name github-actions@github.com
           git pull
+          git push
           python ./utils/providers.py
           git add .
           git commit -m "New daily json"
