@@ -14,7 +14,7 @@ env:
   TMDB_KEY: ${{ secrets.TMDB_KEY }}
 defaults:
   run:
-    working-directory: /utils
+    working-directory: ./utils
 
 jobs:
   python-script:
