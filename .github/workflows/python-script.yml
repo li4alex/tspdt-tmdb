@@ -1,7 +1,7 @@
 name: Daily Python script run to replace table json
 on:
 	schedule:
-		- cron: "17 0 * * *"
+		- cron: "53 19 * * *"
 
 env:
 	TMDB_KEY: ${{ secrets.TMDB_KEY} }
