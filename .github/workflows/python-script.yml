@@ -8,12 +8,16 @@ on:
         default: 'warning'
       tags:
         description: 'Test scenario tags'  
+      environment:
+        type: environment
+        description: Select the environment
   # schedule:
   #   - cron: "23 03 * * *"
 
 jobs:
   python-script:
-    environment: tspdt-tmdb
+    environment:
+      name: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     
     steps:
