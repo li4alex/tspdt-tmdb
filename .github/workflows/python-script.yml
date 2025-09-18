@@ -36,16 +36,11 @@ jobs:
         env:
           TMDB_KEY: ${{ secrets.TMDB_KEY }}
         run: |
-          # MIN_TABLE_JSON_SIZE_MB = 44
-          # MIN_TABLE_JSON_SIZE_BYTES=$((MIN_TABLE_JSON_SIZE_MB * 1024 * 1024))
-          FILE_SIZE = $(du -b "./public/table.json" | awk '{print $1}')
           git config user.email github-actions
           git config user.name github-actions@github.com
           git pull
           git push
           python ./utils/providers.py
-          # if ((FILE_SIZE < MIN_TABLE_JSON_SIZE_BYTES)); then
           git add .
           git commit -m "New json"
           git push
-          # fi
