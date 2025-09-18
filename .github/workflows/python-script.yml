@@ -39,8 +39,8 @@ jobs:
           git pull
           git push
           python ./utils/providers.py
-          if ((FILE_SIZE < MIN_TABLE_JSON_SIZE_BYTES)); then
-            git add .
-            git commit -m "New daily json"
-            git push
-          fi
+          # if ((FILE_SIZE < MIN_TABLE_JSON_SIZE_BYTES)); then
+          git add .
+          git commit -m "New json"
+          git push
+          # fi
