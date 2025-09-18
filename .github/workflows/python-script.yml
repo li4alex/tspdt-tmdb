@@ -10,8 +10,6 @@ on:
         description: 'Test scenario tags'  
   # schedule:
   #   - cron: "23 03 * * *"
-env:
-  TMDB_KEY: ${{ secrets.TMDB_KEY }}
 
 jobs:
   python-script:
@@ -30,6 +28,8 @@ jobs:
       - name: Check out the repository to the runner
         uses: actions/checkout@v5
       - name: Run Python script
+        env:
+          TMDB_KEY: ${{ secrets.TMDB_KEY }}
         run: |
           MIN_TABLE_JSON_SIZE_MB = 44
           MIN_TABLE_JSON_SIZE_BYTES=$((MIN_TABLE_JSON_SIZE_MB * 1024 * 1024))
