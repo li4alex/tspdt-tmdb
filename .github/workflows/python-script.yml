@@ -12,7 +12,7 @@ on:
   #       type: environment
   #       description: Select the environment
   schedule:
-    - cron: "16 03 * * *"
+    - cron: "16 00 * * *"
 
 jobs:
   python-script:
