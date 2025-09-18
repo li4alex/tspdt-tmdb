@@ -1,23 +1,23 @@
 name: Daily Python script run to replace table json
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags'  
-      environment:
-        type: environment
-        description: Select the environment
-  # schedule:
-  #   - cron: "23 03 * * *"
+  # workflow_dispatch:
+  #   inputs:
+  #     logLevel:
+  #       description: 'Log level'     
+  #       required: true
+  #       default: 'warning'
+  #     tags:
+  #       description: 'Test scenario tags'  
+  #     environment:
+  #       type: environment
+  #       description: Select the environment
+  schedule:
+    - cron: "16 03 * * *"
 
 jobs:
   python-script:
     environment:
-      name: ${{ inputs.environment }}
+      name: tspdt-tmdb
     runs-on: ubuntu-latest
     
     steps:
