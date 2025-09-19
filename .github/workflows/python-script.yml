@@ -1,4 +1,4 @@
-name: Daily Python script run to replace table json
+name: Hourly Python script run to replace table json
 on:
   # workflow_dispatch:
   #   inputs:
