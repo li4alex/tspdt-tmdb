@@ -13,10 +13,10 @@ on:
   #       description: Select the environment
   schedule:
     - cron: "0 * * * *"
-  permissions:
-    checks: write
-    contents: read
-    pull-requests: write
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
 
 jobs:
   python-script:
@@ -47,7 +47,7 @@ jobs:
           git add .
           git commit -m "New json"
           git push
-          
+
   build_and_preview:
     if: ${{ github.event.push.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
