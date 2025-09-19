@@ -5,10 +5,10 @@ import { AgGridReact } from "ag-grid-react";
 import SelectCountry from "./SelectCountry";
 import useWindowResizeThreshold from "./UseWindowResizeThreshold";
 import * as Constants from "/utils/Constants";
-import Checkboxes from "./Checkboxes";
 import useFetchJson from "/utils/UseFetchJson";
 import InfoBox from "./InfoBox";
 import { Link } from "wouter";
+import CheckboxSection from "./CheckboxSection";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -309,14 +309,14 @@ const TablePage = () => {
       <div>
         <SelectCountry onSelect={handleSelect} />
       </div>
-      <fieldset>
-        <Checkboxes
+      <div>
+        <CheckboxSection
           windowWidth={windowWidth}
           checked={checked}
           setChecked={setChecked}
           handleCheckbox={handleCheckbox}
         />
-      </fieldset>
+      </div>
       <div className="grid-wrapper">
         <AgGridReact
         ref={gridRef}
