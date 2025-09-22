@@ -1,16 +1,16 @@
 name: Hourly Python script run to replace table json
 on:
-  # workflow_dispatch:
-  #   inputs:
-  #     logLevel:
-  #       description: 'Log level'     
-  #       required: true
-  #       default: 'warning'
-  #     tags:
-  #       description: 'Test scenario tags'  
-  #     environment:
-  #       type: environment
-  #       description: Select the environment
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
+      environment:
+        type: environment
+        description: Select the environment
   schedule:
     - cron: "0 * * * *"
 
