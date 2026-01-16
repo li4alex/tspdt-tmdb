@@ -55,6 +55,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm ci && npm run build
+        env:
+          VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+          VITE_TEMPLATE_ID: ${{ secrets.VITE_TEMPLATE_ID }}
+          VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
+          VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
