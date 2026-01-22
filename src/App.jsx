@@ -8,7 +8,7 @@ const App = () => (
   <div>
     <Switch>
       <Route path="/" component={TablePage} />
-      <Route path="/contact" component={ContactForm} />
+      {/* <Route path="/contact" component={ContactForm} /> */}
       <Route>404: No such page!</Route>
     </Switch>
   </div>
