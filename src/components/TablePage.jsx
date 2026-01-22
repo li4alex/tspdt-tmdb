@@ -327,11 +327,11 @@ const TablePage = () => {
         onGridReady={onGridReady}
         />
       </div>
-      <div>              
+      {/* <div>              
         <Link href="/contact">
           <h3>Contact</h3>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
