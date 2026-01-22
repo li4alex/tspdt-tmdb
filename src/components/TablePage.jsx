@@ -38,9 +38,9 @@ const TablePage = () => {
   const windowWidth = useRef(window.innerWidth);
   const columnDefinitions = () => {
     return [
-      { field: "Pos", headerName: "2025", colId: "2025", maxWidth: 80, filter: true },
-      { field: "2024", maxWidth: 80, filter: true },
-      { field: "2023", maxWidth: 80, filter: true, initialHide: true },
+      { field: "Pos", headerName: "2026", colId: "2026", maxWidth: 80, filter: true },
+      { field: "2025", maxWidth: 80, filter: true },
+      { field: "2024", maxWidth: 80, filter: true, initialHide: true },
       { field: "Title", maxWidth: 130, filter: true, cellRenderer: (params) => {
         if (params["data"]["Providers"]["results"][selectedCountry]) {
           return <a href= {params["data"]["Providers"]["results"][selectedCountry]["link"]} target="_blank" rel="noopener"> {params.value} </a>
@@ -236,7 +236,7 @@ const TablePage = () => {
     }
   }, [countryThreshold]);
 
-  const pos2024Threshold = useWindowResizeThreshold(Constants.MIN_2024_WIDTH);
+  const pos2025Threshold = useWindowResizeThreshold(Constants.MIN_2025_WIDTH);
 
   useEffect(() => {
     if (gridRef.current.api) {
@@ -250,7 +250,7 @@ const TablePage = () => {
       });
       setChecked(updatedChecked); 
     }
-  }, [pos2024Threshold]);
+  }, [pos2025Threshold]);
 
   const directorThreshold = useWindowResizeThreshold(Constants.MIN_DIRECTOR_WIDTH);
 
